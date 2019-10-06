@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+    <title></title>
+</head>
+<body>
+    <h1>JavaScript Object Practice</h1>
+
+    <!--Object creation-->
+    <h3><u>Object Creation</u></h3>
+    <p>Objects are created using very similar syntax as other programming languages.  </p>
+    <br />
+    <p>An object for a person was created using the following code:</p>
+    <pre>
+    var person = {
+        firstname  : "John",
+        lastname   : "Henry",
+        age        : 33,
+        occupation : "Steel Driving Man"
+    };</pre>
+    <br />
+    <br />
+
+    <!--Accessing object properties-->
+    <h3><u>Accessing Object Properties</u></h3>
+    <p>Object properties are accessed in one of two ways, either using "dot notation" or with brackets. For example we can access the age of a person in a person object using either <code>person.age</code> or <code>person["age"]</code>.</p>
+    <br />
+    <p>The following phrase was created by accessing the person objects properties using dot notation:</p>
+    <p id="propertiesDemo"></p>
+    <br />
+
+    <!--Adding new object properties-->
+    <h3><u>Adding New Object Properties</u></h3>
+    <p>New properties can be added to an object once it is created by simply accessing the new property.  For example, with my person before I can create a new property of favoriteFood and set it to be "Spam" by using the code <code>person.favoriteFood = "Spam"</code> then I can create a new phrase with the person's favorite food.</p>
+    <p id="newPropertyDemo"></p>
+    <br />
+
+    <!--Object methods-->
+    <h3><u>Object Methods</u></h3>
+    <p>Methods can be created for objects just like properties can be created.  They would need to be defined at time of creation.  The method is called with the name of the method and ().  Member properties can be accessed using the <code>this</code> keyword like in many programming languages.  Below you will find an example of the previous object being created but now with a method that will display the full name of the person:</p>
+    <br />
+    <pre>
+    var person = {
+        firstname  : "John",
+        lastname   : "Henry",
+        age        : 33,
+        occupation : "Steel Driving Man",
+        fullName   : function() {
+            return this.firstname + " " + this.lastname;
+        }
+    };</pre>
+
+    <p>We can also add a method to an existing object just like we did a property using the following code:</p>
+    <pre>
+    person.fullName = function() {
+        return this.firstname + " " + this.lastname;
+    }</pre>
+    <br />
+    <p>Now using our new method we can create the following phrase using <code>person.fullName()</code> instead of calling the individual names like we did above:</p>
+    <p id="methodDemo"></p>
+    <br />
+
+    <!--Object accessors-->
+    <h3><u>Object Accessors (Setters and Getters)</u></h3>
+    <p>We can set and access data using setters and getters, just like in other programming languages.  These have the advantage of being more secure and have simplier syntax that looks like properties instead of functions.  To change our fullName function to a getter the code would look like the following:</p>
+    <pre>
+    get fullName() {
+        return this.firstname + " " + this.lastname;
+    }</pre>
+    <p>To access this getter we now use <code>person.fullName</code> instead of the function <code>person.fullName()</code>.  A setter has very similar syntax.  To create a setter to change an objects property it would like this:</p>
+    <pre>
+    set firstname(fname) {
+        this.firstname = fname;
+    }</pre>
+    <p>To set a property you would then use a command like <code>person.firstname = "George"</code>.</p>
+    <br />
+
+    <!--Object constructors-->
+    <h3><u>Object Constructors</u></h3>
+    <p>We can create a constructor for our objects so that you can easily create new objects and define their properties.  This time we will create a new car object with constructors as well as the setters and getters:</p>
+    <pre>
+    var car(make,model,color) = {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+    };</pre>
+
+    <code>var Geo = new Car("Geo", "Prism", "Black");</code>
+    <br />
+    <code>var Matrix = new Car("Toyota", "Matrix", "Blue");</code>
+
+
+    <script>
+        //Object creation
+        var person = {
+            firstname: "John",
+            lastname: "Henry",
+            age: 33,
+            occupation: "Steel Driving Man"
+        };
+
+        //Accessing object properties
+        document.getElementById("propertiesDemo").innerHTML = person.firstname + " " + person.lastname + " is " + person.age + " and a " + person.occupation + ".";
+
+        //Adding new object properties
+        person.favoriteFood = "Spam";
+
+        document.getElementById("newPropertyDemo").innerHTML = person.firstname + " " + person.lastname + "'s favorite food is " + person.favoriteFood;
+
+        //Object methods
+        person.fullName = function () {
+            return this.firstname + " " + this.lastname;
+        }
+
+        document.getElementById("methodDemo").innerHTML = person.fullName() + " likes " + person.favoriteFood;
+
+    </script>
+</body>
+</html>
