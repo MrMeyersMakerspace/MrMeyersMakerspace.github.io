@@ -136,7 +136,7 @@ xhttp.onreadystatechange = function () {
         document.getElementById("postQuery").innerHTML = postVariables;
     }
 };
-xhttp.open("PoST", "postRequest.php", true);
+xhttp.open("POST", "postRequest.php", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send(postVariables);</pre><br /><br />
 
@@ -170,7 +170,7 @@ xhttp.send(postVariables);</pre><br /><br />
                     document.getElementById("postQuery").innerHTML = postVariables;
                 }
             };
-            xhttp.open("PoST", "postRequest.php", true);
+            xhttp.open("POST", "postRequest.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //Needs to be added for post requests
             xhttp.send(postVariables);
         }

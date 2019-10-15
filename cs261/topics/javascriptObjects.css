@@ -8,3 +8,7 @@ pre {
     background-color: lightgray;
     color: darkred;
 }
+
+ul {
+    margin: 10px 0px;
+}
