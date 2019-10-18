@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>CSS Animations</title>
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+
+    <!--Animation Styles Defined Here for Ease of Viewing-->
+    <style>
+        /*Animation demo for simple from and to keyframes*/
+        @keyframes demoSimpleColor {
+            from {background-color: green;}
+            to {background-color: orange;}
+        }
+
+        #demo1 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            animation-name: demoSimpleColor;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+        /*Animation demo for 25% increments for keyframes*/
+        @keyframes demoComplexColor {
+            0% {background-color: green;}
+            25% {background-color: yellow;}
+            50% {background-color: blue;}
+            75% {background-color: purple;}
+            100% {background-color: orange;}
+        }
+
+        #demo2 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            animation-name: demoComplexColor;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+        /*Animation demo for an 8 second delay before starting*/
+        #demo3 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            animation-name: demoSimpleColor;
+            animation-duration: 4s;
+            animation-delay: 8s;
+        }
+
+        /*Animation demo that is set to repeat 4 times*/
+        #demo4 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            animation-name: demoSimpleColor;
+            animation-duration: 4s;
+            animation-iteration-count: 4;
+        }
+
+        /*Animation moves in a square*/
+        @keyframes demoSquare {
+            0%   {background-color:green; left:0px; top:0px;}
+            25%  {background-color:yellow; left:200px; top:0px;}
+            50%  {background-color:blue; left:200px; top:200px;}
+            75%  {background-color:purple; left:0px; top:200px;}
+            100% {background-color:orange; left:0px; top:0px;}
+        }
+
+
+        /*Animation demo that shows a normal direction*/
+        #demo5 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            animation-name: demoSquare;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+        }
+
+        /*Animation demo that shows a reverse direction*/
+        #demo6 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            animation-name: demoSquare;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: reverse;
+        }
+
+        /*Animation demo that shows an alternating direction*/
+        #demo7 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            animation-name: demoSquare;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        /*Animation demo that shows a reverse alternating direction*/
+        #demo8 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: relative;
+            animation-name: demoSquare;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+        }
+
+        /*Saves the space necessary for the squares to move and not run into each other*/
+        .square {
+            width: 300px;
+            height: 350px;
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        /*Animation demo showing the types of timings*/
+        .demo9 {
+            width: 300px;
+            height: 50px;
+            text-align: center;
+            position: relative;
+            animation-name: move;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        /*Specifying the individual animations*/
+        #linear {animation-timing-function: linear; background-color: red;}
+        #ease {animation-timing-function: ease; background-color: orange;}
+        #ease-in {animation-timing-function: ease-in; background-color: yellow;}
+        #ease-out {animation-timing-function: ease-out; background-color: green;}
+        #ease-in-out {animation-timing-function: ease-in-out; background-color: blue;}
+        #cubic-bezier {animation-timing-function: cubic-bezier(.16,-0.68,.35,1.89); background-color: indigo;}
+
+        @keyframes move {
+            from {left: 0px;}
+            to {left: 200px;}
+        }
+
+        #timingBox {
+            border: 2px solid black;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Animations</h1>
+    <h2>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)	</h2>
+    <br />
+    <h3><u>CSS Animation Introduction</u></h3>
+    <p>CSS animations allow an HTML element to gradually change from one CSS style to another.  What styles change, in what ways, at what times, and in what order is all up to you.  These changes can repeat a specific number of times or they can go on forever.  The main idea behind a CSS animation is you have a series of keyframes that your element is animated between.  Each of these keyframes have specific CSS properties defined on that frame and the animation moves between them.  You can have just two keyframes as a beginning and end or you can have several defined by percentages.  The key properties used in CSS animations are outlined below.</p>
+    <br />
+
+    <h3><code>@keyframes</code></h3>
+    <p>Keyframes is where you setup the rules for what about your HTML element will change and by what degree.  You can either use <code>from</code> and <code>to</code> for the starting and ending points of the animation or you can use percentages like <code>0% 25% 50% 75% 100%</code> to have even more control over changes.  In your declaration of a keyframe you have both the tag as well as the name of your animation to be called later like this:</p>
+
+    <code>@keyframes animationName {}</code>
+
+    <!--DEMO1-->
+    <p>Below is an example of an animation that has only two keyframes, <code>from</code> and <code>to</code>.  This one is set to change from it's initial background color of green to it's new background color of orange.  It is set on an infinite loop and lasts 4 seconds (more on how to do that later).  Note that once the animation is done it goes back to the original CSS values that were defined (also more on that later).</p>
+
+    <pre>@keyframes demo1 {
+    from {background-color: green;}
+    to {background-color: orange;}
+}</pre>
+
+    <div id="demo1"></div>
+
+    <!--DEMO2-->
+    <p>Now below is an animation that goes from <code>0%</code> to <code>100%</code> in 25% increments to fade from green to yellow to blue to purple then to orange.</p>
+
+    <pre>@keyframes demo2 {
+    0% {background-color: green;}
+    25% {background-color: yellow;}
+    50% {background-color: blue;}
+    75% {background-color: purple;}
+    100% {background-color: orange;}
+}</pre>
+    <div id="demo2"></div>
+
+    <p>By adding more and more increments in the <code>@keyframes</code> you get more and more control over the changes in your animation.</p>
+    <br />
+
+    <h3><code>animation-name</code></h3>
+    <p>This CSS property ties the HTML element with the named animation given in the <code>@keyframes</code> section.  For example, the two animations above had the following label/value pairs for the demos to identify which animation each <code>&lt;div&gt;</code> should use:</p>
+    <p><code>animation-name: demo1;</code></p>
+    <p><code>animation-name: demo2;</code></p>
+    <br />
+
+    <h3><code>animation-duration</code></h3>
+    <p>This CSS property defines how long the total animation will last for.  In the case of both animations above they lasted for 4 seconds.  This means that in the first demo it had the one color change over the course of 4 seconds and in the second demo it did the 4 color changes over the course of 4 seconds, each taking 25% of the total time (1 second).  So our percentages defined in <code>@keyframes</code> are what will happen when that percentage of the total time has passed.  This is important to keep in mind because if you want certain sections of the animation to take certain amounts of time you have to get the math right between the individual percentages and the total time of the animation.  The label/value pair for the animations below were both as follows:</p>
+    <p><code>animation-duration: 4s;</code></p>
+    <br />
+
+    <!--DEMO3-->
+    <h3><code>animation-delay</code></h3>
+    <p>This CSS property creates a delay before the animations starts.  By default, all animations start on pageload.  If you don't want an animation to start until after a certain period of time then you would add this line of code to delay the start of your animation.  An example of an 8 second delay (two full cycles of the above animations) is below:</p>
+    <p><code>animation-delay: 8s;</code></p>
+    <div id="demo3"></div>
+    <br />
+    <br />
+
+    <h3><code>animation-interation-count</code></h3>
+    <p>This CSS property defines how many times the animation will execute before stopping.  By default an animation will cycle through only once unless this property is set to something else.  With this label/value pair you can define a specific number or set to <code>infinite</code> to have the animation repeat indefinitely (what the first two demos are set to).  That code looks like this:</p>
+    <p><code>animation-iteration-count: infinite;</code></p>
+
+    <!--DEMO4-->
+    <p>Below is an animation that is set to repeat 4 times only:</p>
+    <p><code>animation-iteration-count: 4;</code></p>
+    <div id="demo4"></div>
+    <br />
+    <br />
+
+    <h3><code>animation-direction</code></h3>
+    <p>This CSS property defines in what direction the animation will be played.  There are four options for this property outlined below.  Each effects the direction the code executes in <code>@keyframes</code>, thus changing what the animation looks like.</p>
+    <ul>
+        <li><code>normal</code> - This is the default value and will have the animation play forwards.</li>
+        <li><code>reverse</code> - This will cause the animation to play backwards.</li>
+        <li><code>alternate</code> - This will cause the animation to first play forwards and then play backwards and then forwards, alternating each time.</li>
+        <li><code>reverse</code> - This will cause the animation to first play backwards and then play forwards and then backwards, alternating each time.</li>
+    </ul>
+
+    <p>Examples of each are shown below with their accompanying direction command:</p>
+    <!--DEMO5-->
+    <div class="square">
+        <code>animation-direction: normal;</code>
+        <div id="demo5"></div>
+    </div>
+    <!--DEMO6-->
+    <div class="square">
+        <code>animation-direction: reverse;</code>
+        <div id="demo6"></div>
+    </div>
+    <!--DEMO7-->
+    <div class="square">
+        <code>animation-direction: alternate;</code>
+        <div id="demo7"></div>
+    </div>
+    <!--DEMO8-->
+    <div class="square">
+        <code>animation-direction: alternate-reverse;</code>
+        <div id="demo8"></div>
+    </div>
+    <br />
+    <br />
+
+    <h3><code>animation-timing-function</code></h3>
+    <p>This CSS property defines the speed curve of the animation (fast then slow, slow then fast then slow, etc).  There are 5 preset options for speed curves and one that allows you to define the values yourself using a <a href="https://cubic-bezier.com" target="_blank">cubic-bezier</a> function.  The custom cubic-bezier function can even create bouncing effects by using negative numbers.  The linked page is a great resource for creating custom cubic-bezier functions.  Below is a list of all the options for this property and examples of what each of them looks like:</p>
+    <ul>
+        <li><code>linear</code> - This will cause the animation to move at the same speed the entire time.</li>
+        <li><code>ease</code> - This is the default value and has the animation have a slow start, then fast, then end slowly.</li>
+        <li><code>ease-in</code> - This will cause the animation to have a slow start.</li>
+        <li><code>ease-out</code> - This will cause the animation to have a slow ending.</li>
+        <li><code>ease-in-out</code> - This will cause the animation to have a slow start and ending but not speed up in the middle like <code>ease</code> does.</li>
+        <li><code>cubic-bezier(x<sub>1</sub>,y<sub>1</sub>,x<sub>2</sub>,y<sub>2</sub>)</code> - This will cause the animation to move according to the x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub> parameters defined in the function.  The X-axis is the time value and the y-axis is the progression value (how fast it moves).  The only values that can be negative are the progression values.</li>
+    </ul>
+    <!--DEMO9-->
+    <div id="timingBox">
+        <div id="linear" class="demo9"><code>linear</code></div>
+        <div id="ease" class="demo9"><code>ease</code></div>
+        <div id="ease-in" class="demo9"><code>ease-in</code></div>
+        <div id="ease-out" class="demo9"><code>ease-out</code></div>
+        <div id="ease-in-out" class="demo9"><code>ease-in-out</code></div>
+        <div id="cubic-bezier" class="demo9"><code>cubic-bezier(.16,-0.68,.35,1.89)</code></div>
+    </div>
+    <br />
+    <br />
+
+    <h3><code>animation-fill-mode</code></h3>
+    <p>This CSS property defines whether or not the animation style, like color, will persist either before or after the animation time period.  There several are for options for this property.</p>
+    <ul>
+        <li><code>none</code> - </li>
+        <li><code>forwards</code> - </li>
+        <li><code>backwards</code> - </li>
+        <li><code>both</code> - </li>
+    </ul>
+</body>
+</html>
