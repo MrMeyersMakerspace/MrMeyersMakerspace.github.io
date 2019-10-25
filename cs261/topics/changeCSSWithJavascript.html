@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Manipulating CSS Class Properties Using JavaScript</h1>
+    <hr />
+    <p>Below are several examples of manipulating the css properties of elements of specific classes using JavaScript.  Click on the buttons below to look at the CSS properties of the elements change.</p>
+    <br />
+    <br />
+    <h2 class="demo">This is a heading 2.</h2>
+    <br />
+    <p class="demo">This is a paragraph</p>
+    <br />
+    <div class="demo">This is a &#60;div&#62;.</div>
+    <br />
+    <div>
+        <button type="button" onclick="backgroundColor()">Random Background Color</button>
+        <button type="button" onclick="textColor()">Random Text Color</button>
+        <button type="button" onclick="toggleHide()">Toggle Hide/Show</button>
+    </div>
+
+    <script>
+        // Creates a random color
+        var element = document.getElementsByClassName("demo");
+
+        // Changes demo class background color to a random color
+        function backgroundColor() {
+            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            for (var i = 0; i < 3; i++) {
+                element[i].style.backgroundColor = "#" + randomColor;
+            }
+        }
+
+        // Changes demo class text color to a random color
+        function textColor() {
+            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            for (var i = 0; i < 3; i++) {
+                element[i].style.color = "#" + randomColor;
+            }
+        }
+
+        // Toggles demo class visibility between hidden and visible
+        function toggleHide() {
+            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            for (var i = 0; i < 3; i++) {
+                if (element[i].style.display == "none") {
+                    element[i].style.display = "block";
+                } else {
+                    element[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
