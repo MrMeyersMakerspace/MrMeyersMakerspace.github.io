@@ -10,8 +10,13 @@
     <style>
         /*Animation demo for simple from and to keyframes*/
         @keyframes demoSimpleColor {
-            from {background-color: green;}
-            to {background-color: orange;}
+            from {
+                background-color: green;
+            }
+
+            to {
+                background-color: orange;
+            }
         }
 
         #demo1 {
@@ -25,11 +30,25 @@
 
         /*Animation demo for 25% increments for keyframes*/
         @keyframes demoComplexColor {
-            0% {background-color: green;}
-            25% {background-color: yellow;}
-            50% {background-color: blue;}
-            75% {background-color: purple;}
-            100% {background-color: orange;}
+            0% {
+                background-color: green;
+            }
+
+            25% {
+                background-color: yellow;
+            }
+
+            50% {
+                background-color: blue;
+            }
+
+            75% {
+                background-color: purple;
+            }
+
+            100% {
+                background-color: orange;
+            }
         }
 
         #demo2 {
@@ -63,11 +82,35 @@
 
         /*Animation moves in a square*/
         @keyframes demoSquare {
-            0%   {background-color:green; left:0px; top:0px;}
-            25%  {background-color:yellow; left:200px; top:0px;}
-            50%  {background-color:blue; left:200px; top:200px;}
-            75%  {background-color:purple; left:0px; top:200px;}
-            100% {background-color:orange; left:0px; top:0px;}
+            0% {
+                background-color: green;
+                left: 0px;
+                top: 0px;
+            }
+
+            25% {
+                background-color: yellow;
+                left: 200px;
+                top: 0px;
+            }
+
+            50% {
+                background-color: blue;
+                left: 200px;
+                top: 200px;
+            }
+
+            75% {
+                background-color: purple;
+                left: 0px;
+                top: 200px;
+            }
+
+            100% {
+                background-color: orange;
+                left: 0px;
+                top: 0px;
+            }
         }
 
 
@@ -140,16 +183,44 @@
         }
 
         /*Specifying the individual animations*/
-        #linear {animation-timing-function: linear; background-color: red;}
-        #ease {animation-timing-function: ease; background-color: orange;}
-        #ease-in {animation-timing-function: ease-in; background-color: yellow;}
-        #ease-out {animation-timing-function: ease-out; background-color: green;}
-        #ease-in-out {animation-timing-function: ease-in-out; background-color: blue;}
-        #cubic-bezier {animation-timing-function: cubic-bezier(.16,-0.68,.35,1.89); background-color: indigo;}
+        #linear {
+            animation-timing-function: linear;
+            background-color: red;
+        }
+
+        #ease {
+            animation-timing-function: ease;
+            background-color: orange;
+        }
+
+        #ease-in {
+            animation-timing-function: ease-in;
+            background-color: yellow;
+        }
+
+        #ease-out {
+            animation-timing-function: ease-out;
+            background-color: green;
+        }
+
+        #ease-in-out {
+            animation-timing-function: ease-in-out;
+            background-color: blue;
+        }
+
+        #cubic-bezier {
+            animation-timing-function: cubic-bezier(.16,-0.68,.35,1.89);
+            background-color: indigo;
+        }
 
         @keyframes move {
-            from {left: 0px;}
-            to {left: 200px;}
+            from {
+                left: 0px;
+            }
+
+            to {
+                left: 200px;
+            }
         }
 
         #timingBox {
@@ -159,7 +230,7 @@
     </style>
 </head>
 <body>
-    <h1>CSS Animations</h1>
+    <h1 id="pageName">CSS Animations</h1>
     <h2>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)	</h2>
     <br />
     <h3><u>CSS Animation Introduction</u></h3>
@@ -289,5 +360,12 @@
         <li><code>backwards</code> - </li>
         <li><code>both</code> - </li>
     </ul>
+
+    <footer>
+        <div>
+            <a href="#top">Back to Top</a>
+            <a href="/index.html">Home</a>
+        </div>
+    </footer>
 </body>
 </html>
