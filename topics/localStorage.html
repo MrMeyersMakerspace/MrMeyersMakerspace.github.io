@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+    <title>Change CSS With JavaScript</title>
+</head>
+<body>
+    <h1 id="pageName">Local Storage</h1>
+    <p>There are 5 main methods for localStorage that come in handy.  Those are:</p>
+    <ol>
+        <li>setItem()</li>
+        <li>getItem()</li>
+        <li>removeItem()</li>
+        <li>clear()</li>
+        <li>key()</li>
+    </ol>
+
+    <h3>setItem()</h3>
+    <p>The method setItem() is used to store values in a localStorage object.  Below you will enter a value that will be stored in local storage.  It takes two parameters, a key and a string value.</p>
+    <p>Enter a value and key below and click "Store Value" to store the pair in localStorage.</p>
+    <input type="text" id="store" placeholder="Enter Value Here" /><br />
+    <input type="text" id="key" placeholder="Enter Key Here" /><br />
+    <button onclick="setValue()">Store Value</button><br />
+    <p>Code: <code>window.localStorage.setItem(key, value);</code></p><br /><br />
+
+    <h3>getItem()</h3>
+    <p>The method getItem() allow you to access the localStorage object and retrieve data.  You use the specific key for the item you want and it returns it as a string.  It takes one parameter, the key.</p>
+    <p>Enter the key and click on the button below to display the stored value from local storage</p>
+    <input type="text" id="keyDisplay" placeholder="Enter Key Here" /><br />
+    <p>Value: <span id="display"></span></p>
+    <button onclick="displayValue()">Display Value</button><br />
+    <p>Code: <code>window.localStorage.getItem(key);</code></p><br /><br />
+
+    <h3>removeItem()</h3>
+    <p>The method removeItem() is used for removing a value from the localStorage object.  If this is called and there isn't anything stored with that key then it does nothing.  It takes one parameter, the key.</p>
+    <p>Enter a key below to remove that item from the localStorage object.</p>
+    <input type="text" id="remove" placeholder="Enter Key Here" /><br />
+    <button onclick="removeValue()">Remove Value</button><br />
+    <p>Code: <code>window.localStorage.removeItem(key);</code></p><br /><br />
+
+    <h3>clear()</h3>
+    <p>The method clear() is used to remove all data from localStorage.  By running this method it clears out all data.  It takes no parameters.</p>
+    <p>Press the button below to remove all data from localStorage.</p>
+    <button onclick="clearData()">Remove Value</button><br />
+    <p>Code: <code>window.localStorage.clear();</code></p><br /><br />
+
+    <h3>key()</h3>
+    <p>The method key() is used to find out the key for a specific string in the localStorage object. It takes one parameter, an index.</p>
+    <p>Enter a key below to remove that item from the localStorage object.</p>
+    <input type="text" id="index" placeholder="Enter Index Here" /><br />
+    <p>Index: <span id="displayIndex"></span></p>
+    <p>Key: <span id="displayKey"></span></p>
+    <button onclick="getKey()">Find Key</button><br />
+    <p>Code: <code>window.localStorage.key(index);</code></p><br /><br /><br />
+
+    <footer>
+        <div>
+            <a href="#top">Back to Top</a>
+            <a href="/index.html">Home</a>
+        </div>
+    </footer>
+
+    <script>
+        function setValue() {
+            var value = document.getElementById("store").value;
+            var key = document.getElementById("key").value;
+            window.localStorage.setItem(key, value);
+
+        }
+
+        function displayValue() {
+            var key = document.getElementById("keyDisplay").value;
+            var value = window.localStorage.getItem(key);
+            document.getElementById("display").innerHTML = value;
+        }
+
+        function removeValue() {
+            var key = document.getElementById("remove").value;
+            window.localStorage.removeItem(key);
+        }
+
+        function clearData() {
+            window.localStorage.clear();
+        }
+
+        function getKey() {
+            var index = document.getElementById("index").value;
+            var key = window.localStorage.key(parseInt(index));
+            document.getElementById("displayIndex").innerHTML = index;
+            document.getElementById("displayKey").innerHTML = key;
+        }
+    </script>
+</body>
+</html>
