@@ -9,6 +9,7 @@
 <body>
     <h1 id="pageName">Manipulating CSS Class Properties Using JavaScript</h1>
     <hr />
+    <p>JavaScript can be used to change the CSS properties of various elements.  The syntax to make it happen is extremely simple.  All you have to do is call the item using DOM and then add <code>style.propertyName</code> to the end and then set it equal to the desired value.  One key difference is the property name will be written in camelCase instead of snake_case.</p>
     <p>Below are several examples of manipulating the css properties of elements of specific classes using JavaScript.  Click on the buttons below to look at the CSS properties of the elements change.</p>
     <br />
     <br />
@@ -22,7 +23,8 @@
         <button type="button" onclick="backgroundColor()">Random Background Color</button>
         <button type="button" onclick="textColor()">Random Text Color</button>
         <button type="button" onclick="toggleHide()">Toggle Hide/Show</button>
-    </div>
+    </div><br />
+    <div id="colorBlock" style="display:none">RGB color code of most recent color is #<span id="newColor"></span></div>
 
     <footer>
         <div>
@@ -41,6 +43,8 @@
             for (var i = 0; i < 3; i++) {
                 element[i].style.backgroundColor = "#" + randomColor;
             }
+            document.getElementById("colorBlock").style.display = "inline";
+            document.getElementById("newColor").innerHTML = randomColor;
         }
 
         // Changes demo class text color to a random color
@@ -49,6 +53,8 @@
             for (var i = 0; i < 3; i++) {
                 element[i].style.color = "#" + randomColor;
             }
+            document.getElementById("colorBlock").style.display = "inline";
+            document.getElementById("newColor").innerHTML = randomColor;
         }
 
         // Toggles demo class visibility between hidden and visible
@@ -61,6 +67,7 @@
                     element[i].style.display = "none";
                 }
             }
+            document.getElementById("colorBlock").style.display = "none";
         }
     </script>
 </body>
