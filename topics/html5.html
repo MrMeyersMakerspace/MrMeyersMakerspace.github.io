@@ -14,7 +14,7 @@
     <p>The audio tag allows you to embed audio into your site without having to use an external plugin.  You have control on whether or not you have controls available for the user and whether or not that audio automatically plays or is trigged by the user.  These controls can even been controlled via JavaScript so you can create your own control buttons instead of the build in controls.  All browsers support MP3 files, with most also supporting WAV files, and all but Edge, IE, and Safari also supporting OGG files.</p>
     <p>To create an audio element we simply use the <code>&#60;audio&#62;</code> tag, define the source, and then what type of audio file it is.  Then you can add <code>controls</code> if you want the audio to also have controls available for playing, pausing, controlling the sound level, and the ability to download the audio file.  Below is a sample music file with the code necessary for it to work.  Not shown is an audio file called "music.mp3" that is also hosted in the same folder.</p>
 
-    <audio controls src="music.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>
+    <audio controls src="music.mp3" type="audio/mpeg" loop>Your browser does not support the audio element</audio>
     <br />
     <p>Code:</p>
     <code>&#60;audio controls src="music.mp3" type="audio/mpeg"&#62;</code>Your browser does not support the audio element<code>&#60;/audio&#62;</code>
@@ -69,8 +69,10 @@ function big() {
     vid.height = 400;
 }</pre>
     <br />
-    <p>Another handy and/or annoying feature, depending on its implementation, that can be used for audio and video media is autoplay and loop.  You can use autoplay to have audio or video automatically start playing when a page is visited and loop will have that media continue to loop indefinitely.  Below is a video that automatically plays when the page is loaded and continues to loop without the ability to stop it because the controls are disabled.  Doing this with audio would be a very mean trick to play on a user and should be avoided.</p>
-    <video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay loop>Your browser does not support the video element</video>
+    <p>Other handy features for video are autoplay, loop, and muted.  You can use autoplay to have a video automatically start playing when a page is visited.  Loop will have that video (also works with audio) continue to loop indefinitely or until stopped by the user (as long as the controls are present).  Muted will have the video play but mutes the audio.  If you want a video to autoplay you must also have the muted property as well or most modern browsers will block the autoplay.  All you have to do to add these features is to add <code>autoplay</code>, <code>loop</code>, and/or <code>muted</code> respectively to the tag properties.  Below is a video that automatically plays when the page is loaded and continues to loop without the ability to stop it because the controls are disabled.  Be careful on how you do this as it could irritate users.</p>
+    <video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay muted loop>Your browser does not support the video element</video>
+    <p>Code:</p>
+    <code>&#60;video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay muted loop&#62;</code>Your browser does not support the video element<code>&#60;/video&#62;</code>
 
     <br /><br /><br /><br />
     <footer>
