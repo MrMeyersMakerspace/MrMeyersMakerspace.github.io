@@ -73,6 +73,32 @@ function big() {
     <video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay muted loop>Your browser does not support the video element</video>
     <p>Code:</p>
     <code>&#60;video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay muted loop&#62;</code>Your browser does not support the video element<code>&#60;/video&#62;</code>
+    <br /><br />
+
+    <h3>Canvas Tag</h3>
+    <p>A <code>canvas</code> element creates a blank canvas that can be drawn on using JavaScript.  It has a defined height and width.  There are three steps to drawing on a canvas once it's been created:</p>
+    <!--Steps borrowed from W3Schools-->
+    <ol>
+        <li>Find the canvas element.</li>
+        <li>Create a drawing object.</li>
+        <li>Draw on the canvas.</li>
+    </ol>
+    <p>What is drawn on the canvas can be pretty extensive and a great tutorial on what you can do with <code>canvas</code> elements can be found on <a href="https://www.w3schools.com/graphics/canvas_intro.asp" target="_blank">W3Schools</a>.  Below you will find a few simple examples of drawings I've done using <code>canvas</code> (for sake of length code is not copied here and can be found looking at the page source):</p>
+
+    <div id="flexbox">
+        <canvas width="300" height="300" id="canvas1" style="border:2px; background-color: white;"></canvas>
+        <canvas width="300" height="300" id="canvas2" style="border:2px; background-color: white;"></canvas>
+    </div>
+
+
+    <p><code>Canvas</code> isn't limited to still images.  You can also make your canvas an animation, interactive, and even create a canvas game!  Below are some amazing examples of each:</p>
+    <ul>
+        <li><a href="https://codepen.io/tarick/pen/jWOWOV" target="_blank">Clock animated canvas by tarick</a></li>
+        <li><a href="https://zenphoton.com/" target="_blank">Zen Photon Garden interactive canvas by Michah Elizabeth Scott</a></li>
+        <li><a href="http://arcade.lostdecadegames.com/onslaught-arena/" target="_blank">Onslaught? Arena canvas game by Lost Decade Games</a></li>
+    </ul>
+
+
 
     <br /><br /><br /><br />
     <footer>
@@ -107,6 +133,51 @@ function big() {
         function big() {
             vid.height = 400;
         }
+
+        // First canvas drawing, a smiley face
+        var c1 = document.getElementById("canvas1");
+        var ctx1 = c1.getContext("2d");
+        ctx1.strokeStyle = "#000000";  // White color
+        // Yellow Face
+        ctx1.beginPath();
+        ctx1.arc(150, 150, 125, 0, 2 * Math.PI);
+        ctx1.stroke();
+        ctx1.fillStyle = "#fffb00";  // Yellow color
+        ctx1.fill();
+        // Left Eye
+        ctx1.moveTo(100, 75);
+        ctx1.lineTo(100, 125);
+        ctx1.stroke();
+        // Right Eye
+        ctx1.moveTo(200, 75);
+        ctx1.lineTo(200, 125);
+        ctx1.stroke();
+        // Smile
+        ctx1.beginPath();
+        ctx1.arc(150, 200, 50, 0, Math.PI);
+        ctx1.stroke();
+        ctx1.fillStyle = "#ffffff";  // Black color
+        ctx1.fill();
+
+        // Second canvas drawing, the Triforce
+        // I figured out the math from the calculations
+        // found here https://tinyurl.com/qqhe8bg
+        var a = 150;
+        var b = 280;
+        var c2 = document.getElementById("canvas2");
+        var ctx2 = c2.getContext("2d");
+        ctx2.beginPath();
+        ctx2.moveTo(a+0, b-259.8);
+        ctx2.lineTo(a-150, b-0);
+        ctx2.lineTo(a+150, b-0);
+        ctx2.fillStyle = "#ffd700" // Gold color
+        ctx2.fill();
+        ctx2.beginPath();
+        ctx2.moveTo(-79+a, b-123);
+        ctx2.lineTo(79+a, b-123);
+        ctx2.lineTo(0+a, b - 0);
+        ctx2.fillStyle = "#ffffff" // White color
+        ctx2.fill();
     </script>
 </body>
 </html>
