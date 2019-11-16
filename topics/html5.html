@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
-    <title>JavaScript Objects</title>
+    <title>HTML5 Media Tags</title>
 </head>
 <body>
     <h1 id="pageName">HTML5 Tags - Audio, Video, and Canvas</h1>
@@ -14,18 +14,65 @@
     <p>The audio tag allows you to embed audio into your site without having to use an external plugin.  You have control on whether or not you have controls available for the user and whether or not that audio automatically plays or is trigged by the user.  These controls can even been controlled via JavaScript so you can create your own control buttons instead of the build in controls.  All browsers support MP3 files, with most also supporting WAV files, and all but Edge, IE, and Safari also supporting OGG files.</p>
     <p>To create an audio element we simply use the <code>&#60;audio&#62;</code> tag, define the source, and then what type of audio file it is.  Then you can add <code>controls</code> if you want the audio to also have controls available for playing, pausing, controlling the sound level, and the ability to download the audio file.  Below is a sample music file with the code necessary for it to work.  Not shown is an audio file called "music.mp3" that is also hosted in the same folder.</p>
 
-    <audio controls src="music.mp3" type="audio/mpeg">Your browser does not support the <code>&#60;audio&#62;</code> element</audio>
+    <audio controls src="music.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>
     <br />
     <p>Code:</p>
-    <code>&#60;audio controls src="music.mp3" type="audio/mpeg"&#62;</code>Your browser does not support the <code>&#60;audio&#62;</code> element<code>&#60;/audio&#62;</code>
+    <code>&#60;audio controls src="music.mp3" type="audio/mpeg"&#62;</code>Your browser does not support the audio element<code>&#60;/audio&#62;</code>
     <br /><br />
 
     <p>You'll notice the text inbetween the <code>&#60;audio&#62;</code> tags.  This text will appear if the user is running the site on an older browser that does not support the <code>&#60;audio&#62;</code> tag or the audio file type used.  This is also true for the <code>&#60;video&#62;</code> tag as well.</p>
     <br /><br />
 
     <h3>Video Tag</h3>
-    <p>The video tag, like the audio tag, allows you to embed media in your page without the need of an external plugin, in this case video.  Also like the audio tag you can decide whether or not the video will have controls and whether or not that video automatically plays.  These controls can also be controlled externally.</p>
+    <p>The video tag, like the audio tag, allows you to embed media in your page without the need of an external plugin, in this case video.  Also like the audio tag you can decide whether or not the video will have controls built in and whether or not that video automatically plays.  These controls can also be controlled externally via JavaScript.  Video also allows for fullscreen and picture-in-picture viewing with the embedded controls.  Another feature of video is you can control how big the video is by defining the width and length of the video.  If you define just one it will scale the other appropriately.  If you define both but don't use the same ratio as the original video then it will create a video element of that size but keep the proper ratio on the video as it is playing.</p>
+    <p>Below is an example video that has embedded controls with it's code.  The volume control doesn't work because this stock video has no audio.</p>
 
+    <video controls height="300" src="beachVideo.mp4" type="video/mpeg">Your browser does not support the video element</video>
+    <br />
+    <p>Code:</p>
+    <code>&#60;video controls height="300" src="beachVideo.mp4" type="video/mpeg"&#62;</code>Your browser does not support the video element<code>&#60;/video&#62;</code>
+    <br /><br />
+
+    <p>For a video with external controls we can remove the controls statement in the <code>&#60;video&#62;</code> tag and then create JavaScript controlled buttons to do the same thing, just like with audio.  You can also change the size of the video as well by altering the height or width values via JavaScript.  Here is an example of a video with no onboard controls that is controlled with external buttons instead:</p>
+    <video height="300" src="beachVideo.mp4" type="video/mpeg" id="myVid">Your browser does not support the video element</video>
+    <div class="center">
+        <button onclick="playPauseVid()">Play/Pause</button>
+        <button onclick="small()">Small</button>
+        <button onclick="original()">Original</button>
+        <button onclick="big()">Big</button>
+    </div>
+    <p>Video Code:</p>
+    <code>&#60;video height="300" src="beachVideo.mp4" type="video/mpeg" id="myVid"&#62;</code>Your browser does not support the video element<code>&#60;/video&#62;</code>
+    <p>Code for Buttons:</p>
+    <pre>var vid = document.getElementById("myVid");
+
+// Play/pause button for video
+function playPauseVid() {
+    if (vid.paused)
+        vid.play();
+    else
+        vid.pause();
+}
+
+// Small button for video
+function small() {
+    vid.height = 200;
+}
+
+// Original button for video
+function original() {
+    vid.height = 300;
+}
+
+// Big button for video
+function big() {
+    vid.height = 400;
+}</pre>
+    <br />
+    <p>Another handy and/or annoying feature, depending on its implementation, that can be used for audio and video media is autoplay and loop.  You can use autoplay to have audio or video automatically start playing when a page is visited and loop will have that media continue to loop indefinitely.  Below is a video that automatically plays when the page is loaded and continues to loop without the ability to stop it because the controls are disabled.  Doing this with audio would be a very mean trick to play on a user and should be avoided.</p>
+    <video height="300" src="beachVideo.mp4" type="video/mpeg" autoplay loop>Your browser does not support the video element</video>
+
+    <br /><br /><br /><br />
     <footer>
         <div>
             <a href="#top">Back to Top</a>
@@ -34,7 +81,30 @@
     </footer>
 
     <script>
+        var vid = document.getElementById("myVid");
 
+        // Play/pause button for video
+        function playPauseVid() {
+            if (vid.paused)
+                vid.play();
+            else
+                vid.pause();
+        }
+
+        // Small button for video
+        function small() {
+            vid.height = 200;
+        }
+
+        // Original button for video
+        function original() {
+            vid.height = 300;
+        }
+
+        // Big button for video
+        function big() {
+            vid.height = 400;
+        }
     </script>
 </body>
 </html>

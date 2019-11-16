@@ -95,6 +95,11 @@ ul {
     display: none;
 }
 
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
 audio {
     display: block;
     margin: auto;
