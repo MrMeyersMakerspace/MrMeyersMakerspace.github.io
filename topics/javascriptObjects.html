@@ -76,15 +76,19 @@
     <!--Object constructors-->
     <h3><u>Object Constructors</u></h3>
     <p>We can create a constructor for our objects so that you can easily create new objects and define their properties.  This time we will create a new car object with constructors as well as the setters and getters:</p>
-    <pre>var car(make,model,color) = {
+    <pre>function car(make,model,color) {
     this.make = make;
     this.model = model;
     this.color = color;
 };</pre>
 
-    <pre>var Geo = new Car("Geo", "Prism", "Black");</pre>
+    <pre>var geo = new car("Geo", "Prism", "Black");</pre>
     <br />
-    <pre>var Matrix = new Car("Toyota", "Matrix", "Blue");</pre>
+    <pre>var matrix = new car("Toyota", "Matrix", "Blue");</pre><br />
+    <p>Now using our created objects via a constructor we can create the following strings:</p>
+    <div id="constructorDemo1"></div><br />
+    <div id="constructorDemo2"></div><br />
+    <br /><br />
 
     <footer>
         <div>
@@ -116,6 +120,22 @@
         }
 
         document.getElementById("methodDemo").innerHTML = person.fullName() + " likes " + person.favoriteFood;
+
+        //Object constructors
+        function car(make, model, color) {
+            this.make = make;
+            this.model = model;
+            this.color = color;
+        };
+
+        var geo = new car("Geo", "Prism", "Black");
+        var matrix = new car("Toyota", "Matrix", "Blue");
+
+        var geoString = "I use to own a " + geo.color + " " + geo.make + " " + geo.model + ".";
+        document.getElementById("constructorDemo1").innerHTML = geoString;
+
+        var matrixString = "I now own a " + matrix.color + " " + matrix.make + " " + matrix.model + ".";
+        document.getElementById("constructorDemo2").innerHTML = matrixString;
 
     </script>
 </body>
