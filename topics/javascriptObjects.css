@@ -95,6 +95,16 @@ ul {
     display: none;
 }
 
+audio {
+    display: block;
+    margin: auto;
+}
+
+video {
+    display: block;
+    margin: auto;
+}
+
 @media screen and (max-width: 680px) {
 
     #pageName {
