@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <title>JSON Parse, Stringify</title>
 </head>
 
@@ -13,28 +14,54 @@
     <h1 id="pageName">JSON</h1>
     <h2>JSON Parse, Stringify</h2>
 
-    <!--Object creation-->
-    <h3><u>JavaScript</u></h3>
-    <p>JavaScript is an extremely useful and popular client side web development language. It has the capacity to do a
-        lot of the same things you can do with other programming languages like C++. It even can be used for server side
-        development with Node.js. This simple demo uses all of the major components of JavaScript under the hood,
-        including loops, conditional statements, functions, variables, parameters, and arrays. You can view the page
-        source to see how all of these features is implemented.</p>
+    <p>JSON stands for JavaScript Object Notation and is a standard format used for exchanging data. With the commands
+        <code>parse()</code> we can turn a string of JSON data into an object, which is more useful for searching
+        through an manipulating on a client. Then with <code>stringify()</code> we can turn that object data back into a
+        JSON string to pass it back to a server or another application. This ability to go back and forth between a JSON
+        string and an object is extremely useful when sending data between clients and servers. Below you will find
+        examples of each and code showing how they work.</p>
     <br />
 
-    <p>Please enter your top 3 favorite movies below:</p>
+    <h3>Stringify</h3>
+    <p>By filling out the form below you will create a new computer object with all of the relavent information for the
+        computer.  Then below that object will be turned into a string to be displayed using <code>stringify()</code>.</p>
     <form>
-        <label for="fav1">Favorite Movie 1: </label><input type="text" name="fav1" id="fav1" required><br>
-        <label for="fav2">Favorite Movie 2: </label><input type="text" name="fav2" id="fav2" required><br>
-        <label for="fav3">Favorite Movie 3: </label><input type="text" name="fav3" id="fav3" required><br>
-        <button type="button" onclick="checkEmpty()">Submit Movies</button>
+        <label>Processor: </label><input type="text" name="cpu" id="cpu" required><br>
+        <label>Graphics Card: </label><input type="text" name="gpu" id="gpu" required><br>
+        <label>Memory: </label><input type="text" name="ram" id="ram" required><br>
+        <label>Power Supply: </label><input type="text" name="psu" id="psu" required><br>
+        <label>Storage (HDD, SSD, M.2, etc): </label><input type="text" name="storage" id="storage" required><br>
+        <button type="button" onclick="addComputer()">Add Computer</button>
     </form>
     <br />
     <br />
 
     <div id="message"></div> <br>
 
+    <p>The JSON of the object that was used to create that string is:</p>
+    <div id="objectDump"></div><br><br>
 
+
+    <h3>Parse</h3>
+    <p>By filling out the form below you will create a string of data that will then be used to create an object using <code>parse()</code>.  That object will then be used to create the string of computer information.</p>
+    <form>
+        <label>Processor: </label><input type="text" name="cpu2" id="cpu2" required><br>
+        <label>Graphics Card: </label><input type="text" name="gpu2" id="gpu2" required><br>
+        <label>Memory: </label><input type="text" name="ram2" id="ram2" required><br>
+        <label>Power Supply: </label><input type="text" name="psu2" id="psu2" required><br>
+        <label>Storage (HDD, SSD, M.2, etc): </label><input type="text" name="storage2" id="storage2" required><br>
+        <button type="button" onclick="addComputer2()">Add Computer</button>
+    </form>
+    <br />
+    <br />
+
+    <div id="message2"></div> <br>
+
+    <p>The JSON of the object that was used to create that string is:</p>
+    <div id="objectDump2"></div>
+
+    <br />
+    <br />
     <footer>
         <div>
             <a href="#top">Back to Top</a>
@@ -43,67 +70,57 @@
     </footer>
 
     <script>
-        // Function to check if textboxes are empty
-        function checkEmpty() {
-            // Variable to determine if form can advance
-            var canAdvance = true;
+        // Create a new computer object
+        function addComputer() {
+            // Get values for object
+            var cpu = document.getElementById("cpu").value;
+            var gpu = document.getElementById("gpu").value;
+            var ram = document.getElementById("ram").value;
+            var psu = document.getElementById("psu").value;
+            var storage = document.getElementById("storage").value;
 
-            for (var i = 0; i < 3; i++) {
-                
-                if (document.getElementById("fav" + (i + 1)).value == "") {
-                    // Set focus on empty box
-                    document.getElementById("fav" + (i + 1)).focus();
-                    // Stop advancement of program
-                    canAdvance = false;
-                    // Exit loop
-                    break;
-                }
-            }
+            // Create computer object
+            var computer = {
+                cpu: cpu,
+                gpu: gpu,
+                ram: ram,
+                psu: psu,
+                storage: storage
+            };
 
-            // Check to see if we can advance to the next step, if not error message
-            if (canAdvance) {
-                storeMovies();
-            } else {
-                document.getElementById("message").innerHTML = "Please fill out all of the entries.";
-            }
+            // Display computer specs
+            displayComputer(computer);
         }
 
-        // Function to get and store the favorite movies input as an array
-        function storeMovies() {
-            // Create an array
-            var favMovies = [];
+        // Function displays computer information from the passed in computer object
+        function displayComputer(computer) {
 
-            // For loop to assign movies to the array
-            for (var i = 0; i < 3; i++) {
-                favMovies.push(document.getElementById("fav" + (i + 1)).value);
-                console.log(favMovies[i]);
-            }
-
-            // Passes the favMovies array as a parameter to displayMovies
-            displayMovies(favMovies);
+            document.getElementById("message").innerHTML = "Your computer has a " + computer.cpu + " processor, a " + computer.gpu + " graphics card, " + computer.ram + " ram, a " + computer.psu + " power supply, and " + computer.storage + " for long term storage.";
+            // Turns the object into a string using stringify() so that the data can be easily displayed
+            document.getElementById("objectDump").innerHTML = JSON.stringify(computer);
         }
 
-        // Function to actually display the favorite movies
-        function displayMovies(favMovies) {
-            // Crate iteration variable and display string variable
-            var i = 0;
-            var display = "Your favorite movies are ";
+        // Creates the JSON string for the computer
+        function addComputer2() {
 
-            // While loop
-            while (favMovies[i]) {
-                // Conditional Statement to have first movie not have a comma at the beginning
-                if (i == 0) {
-                    display = display + favMovies[i];
-                } else {
-                    display = display + ", " + favMovies[i];
-                }
+            // Create computer JSON string from user inputs
+            var computerJSON = '{"cpu": "' + document.getElementById("cpu2").value + '", "gpu": "' + document.getElementById("gpu2").value + '", "ram": "' + document.getElementById("ram2").value + '", "psu": "' + document.getElementById("psu2").value + '", "storage": "' + document.getElementById("storage2").value + '"}';
 
-                // Iterate
-                i++;
-            }
-            display = display + "!";
-            document.getElementById("message").innerHTML = display;
+            // Display computer specs
+            displayComputer2(computerJSON);
+        }
 
+        // Function to display computer information by converting JSON into an object first
+        function displayComputer2(computerJSON) {
+
+            // Turn JSON into an object
+            var computer2 = JSON.parse(computerJSON);
+
+            // Uses newly created object to create our computer info message
+            document.getElementById("message2").innerHTML = "Your computer has a " + computer2.cpu + " processor, a " + computer2.gpu + " graphics card, " + computer2.ram + " ram, a " + computer2.psu + " power supply, and " + computer2.storage + " for long term storage.";
+            
+            // Display the raw JSON
+            document.getElementById("objectDump2").innerHTML = computerJSON;
         }
 
 
