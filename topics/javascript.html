@@ -31,7 +31,7 @@
     <br />
     <br />
 
-    <div id="favoriteMovies"></div> <br>
+    <div id="message"></div> <br>
 
 
     <footer>
@@ -63,7 +63,7 @@
             if (canAdvance) {
                 storeMovies();
             } else {
-                document.getElementById("favoriteMovies").innerHTML = "Please fill out all of the entries.";
+                document.getElementById("message").innerHTML = "Please fill out all of the entries.";
             }
         }
 
@@ -101,7 +101,7 @@
                 i++;
             }
             display = display + "!";
-            document.getElementById("favoriteMovies").innerHTML = display;
+            document.getElementById("message").innerHTML = display;
 
         }
 
