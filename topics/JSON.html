@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+    <title>JSON Parse, Stringify</title>
+</head>
+
+<body>
+    <h1 id="pageName">JSON</h1>
+    <h2>JSON Parse, Stringify</h2>
+
+    <!--Object creation-->
+    <h3><u>JavaScript</u></h3>
+    <p>JavaScript is an extremely useful and popular client side web development language. It has the capacity to do a
+        lot of the same things you can do with other programming languages like C++. It even can be used for server side
+        development with Node.js. This simple demo uses all of the major components of JavaScript under the hood,
+        including loops, conditional statements, functions, variables, parameters, and arrays. You can view the page
+        source to see how all of these features is implemented.</p>
+    <br />
+
+    <p>Please enter your top 3 favorite movies below:</p>
+    <form>
+        <label for="fav1">Favorite Movie 1: </label><input type="text" name="fav1" id="fav1" required><br>
+        <label for="fav2">Favorite Movie 2: </label><input type="text" name="fav2" id="fav2" required><br>
+        <label for="fav3">Favorite Movie 3: </label><input type="text" name="fav3" id="fav3" required><br>
+        <button type="button" onclick="checkEmpty()">Submit Movies</button>
+    </form>
+    <br />
+    <br />
+
+    <div id="message"></div> <br>
+
+
+    <footer>
+        <div>
+            <a href="#top">Back to Top</a>
+            <a href="/index.html">Home</a>
+        </div>
+    </footer>
+
+    <script>
+        // Function to check if textboxes are empty
+        function checkEmpty() {
+            // Variable to determine if form can advance
+            var canAdvance = true;
+
+            for (var i = 0; i < 3; i++) {
+                
+                if (document.getElementById("fav" + (i + 1)).value == "") {
+                    // Set focus on empty box
+                    document.getElementById("fav" + (i + 1)).focus();
+                    // Stop advancement of program
+                    canAdvance = false;
+                    // Exit loop
+                    break;
+                }
+            }
+
+            // Check to see if we can advance to the next step, if not error message
+            if (canAdvance) {
+                storeMovies();
+            } else {
+                document.getElementById("message").innerHTML = "Please fill out all of the entries.";
+            }
+        }
+
+        // Function to get and store the favorite movies input as an array
+        function storeMovies() {
+            // Create an array
+            var favMovies = [];
+
+            // For loop to assign movies to the array
+            for (var i = 0; i < 3; i++) {
+                favMovies.push(document.getElementById("fav" + (i + 1)).value);
+                console.log(favMovies[i]);
+            }
+
+            // Passes the favMovies array as a parameter to displayMovies
+            displayMovies(favMovies);
+        }
+
+        // Function to actually display the favorite movies
+        function displayMovies(favMovies) {
+            // Crate iteration variable and display string variable
+            var i = 0;
+            var display = "Your favorite movies are ";
+
+            // While loop
+            while (favMovies[i]) {
+                // Conditional Statement to have first movie not have a comma at the beginning
+                if (i == 0) {
+                    display = display + favMovies[i];
+                } else {
+                    display = display + ", " + favMovies[i];
+                }
+
+                // Iterate
+                i++;
+            }
+            display = display + "!";
+            document.getElementById("message").innerHTML = display;
+
+        }
+
+
+    </script>
+</body>
+
+</html>
