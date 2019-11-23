@@ -20,6 +20,32 @@
         figcaption {
             text-align: center;
         }
+
+        #listDiv1 {
+            width: 50%;
+            float: left;
+        }
+
+        #listDiv2 {
+            width: 50%;
+            float: right;
+        }
+
+        .btn1 {
+            padding-top: 15px;
+            width: 45%;
+            float: left;
+        }
+
+        .btn2 {
+            padding-top: 15px;
+            width: 45%;
+            float: right;
+        }
+
+        #bothLists {
+            display: flex;
+        }
     </style>
 
     <h1 id="pageName">DOM Manipulation</h1>
@@ -28,14 +54,106 @@
     <h3><u>DOM Manipulation</u></h3>
     <p>The DOM (Document Object Model) is created on a browser when a web page loads.  It consists of many object nodes that are in a tree.  These nodes all have parents, siblings, and children (nodes higher than, equal to, and lower than it).  An example of an HTML DOM Tree of Objects from W3 schools is shown below:</p>
 
-    <img src="pic_htmltree.gif" alt="HTML Tree from W3 Schools" width="400" />
+    <img src="pic_htmltree.gif" alt="HTML Tree from W3 Schools" width="350" />
     <figcaption>HTML Tree from W3 Schools (<a href="https://www.w3schools.com/js/js_htmldom.asp">Link</a>)</figcaption>
-    <p>These objects in the DOM can be manipulated using their node properties with JavaScript functions like <code>createElement()</code>, <code>appendChild()</code>, <code>insertBefore()</code>, and <code>removeChild()</code>.  Each of these functions and how they work are described below.  Then there is a demo putting them together.</p>
+    <p>These objects in the DOM can be manipulated using their node properties with JavaScript methods like <code>createElement()</code>, <code>appendChild()</code>, <code>insertBefore()</code>, and <code>removeChild()</code>.  Each of these methods and how they work are described below.  Then there is a demo putting them together.</p>
+    <br />
 
+    <h3>createElement</h3>
+    <p>The method <code>createElement()</code> allows you to use JavaScript to create a brand new HTML element instead of just manipulating an existing one.  To do so you create a new variable that is equal to your <code>createElement()</code> code.  The name of the element in quotation marks goes inside of the <code>createElement()</code> parenthesis.  The full statement for creating a new &lt;div&gt; looks like this:</p>
+    <pre>var dv = document.createElement("DIV");</pre>
+    <p>Now we have a new &lt;div&gt; element we can use to do other things or put in other places.</p>
     <br />
     <br />
 
+    <h3>appendChild</h3>
+    <p>The method <code>appendChild()</code> allows you to add an node to the end of another node.  This can either be a new element that was created with <code>createElement()</code> and other such methods or it could be an existing element that is being moved.  The syntax for using <code>appendChild()</code> has you identify a specific element using DOM that will have the element added to it as a child and then add the <code>appendChild()</code> method at the end with the node to be added in the parenthesis.  If I were adding a new line item with the variable name of <code>entry</code> to the end of a unordered list with the ID of <code>myList</code> the code would look like this:</p>
+    <pre>document.getElementById("myList").appendChild(entry);</pre>
+    <p>Now we have a new line item added to the bottom of the unordered list <code>myList</code>.</p>
+    <br />
+    <br />
 
+    <h3>insertBefore</h3>
+    <p>The method <code>insertBefore()</code> is very similar to the <code>appendChild()</code> method except it inserts the node just before a specified child node instead of at the very end of the node.  As such the syntax is a little bit different because we have to identify the child node it is going to be inserted before as well as what is being inserted.  These are the two parameters in parenthesis for this method, first the node to be inserted, and second the node it is going to be inserted before.  An example of inserting that same <code>entry</code> line item as before is now going to be inserted before the first line item in the <code>myList</code> unordered list.</p>
+    <pre>document.getElementById("myList").insertBefore(entry, myList.childNodes[0]);</pre>
+    <p>Now we have a new line item added to the beginning of the unordered list <code>myList</code>.</p>
+    <br />
+    <br />    <h3>insertBefore</h3>
+    <p>The method <code>insertBefore()</code> is very similar to the <code>appendChild()</code> method except it inserts the node just before a specified child node instead of at the very end of the node.  As such the syntax is a little bit different because we have to identify the child node it is going to be inserted before as well as what is being inserted.  These are the two parameters in parenthesis for this method, first the node to be inserted, and second the node it is going to be inserted before.  An example of inserting that same <code>entry</code> line item as before is now going to be inserted before the first line item in the <code>myList</code> unordered list.</p>
+    <pre>document.getElementById("myList").insertBefore(entry, myList.childNodes[0]);</pre>
+    <p>Now we have a new line item added to the beginning of the unordered list <code>myList</code>.</p>
+    <br />
+    <br />
+
+    <h3>removeChild</h3>
+    <p>The method <code>removeChild()</code> is used to remove a child element from a node.  The syntax is simple has had you get the element and then use the method <code>removeChild()</code> with the parameter in parenthesis being the node to be removed.  Removing the second line item in the <code>myList</code> unordered list would look like this:</p>
+    <pre>document.getElementById("myList").removeChild(myList.childNodes[1]);</pre>
+    <p>The second item in the list is now gone.</p>
+    <br />
+    <br />
+
+    <h3>Demo</h3>
+    <p>Below is a demo that puts all of these methods together.  There are two lists with items in those lists, one of the left and one on the right.  The buttons below will either create new specified items to go into those lists, move items from one list to beginning of the other, or remove specified items from the specific list.  Test it out below and look at the source code to find out how it works!</p>
+    <div id="bothLists">
+        <div id="listDiv1">
+            <ol id="list1">
+                <li>Apples</li>
+                <li>Bananas</li>
+                <li>Oranges</li>
+                <li>Prunes</li>
+                <li>Tomatoes</li>
+                <li>Grapes</li>
+                <li>Peaches</li>
+            </ol>
+        </div>
+        <div id="listDiv2">
+            <ol id="list2">
+                <li>Carrots</li>
+                <li>Cucumbers</li>
+                <li>Zucchini</li>
+                <li>Squash</li>
+                <li>Kale</li>
+                <li>Broccoli</li>
+                <li>Spinach</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="btn1">
+        <label for="addLeft">New Line Item Left:</label>
+        <input type="text" id="addLeft" />
+        <button onclick="appendLeft()">Add to End of Left</button>
+    </div>
+    <div class="btn2">
+        <label for="addRight">New Line Item Right:</label>
+        <input type="text" id="addRight" />
+        <button onclick="appendRight()">Add to End of Right</button>
+    </div>
+
+    <div class="btn1">
+        <label for="moveLeft">Item # From Left:</label>
+        <input type="number" id="moveLeft" />
+        <button onclick="insertFromLeft()">Move to Start of Right</button>
+    </div>
+    <div class="btn2">
+        <label for="moveRight">Item # From Right:</label>
+        <input type="number" id="moveRight" />
+        <button onclick="insertFromRight()">Move to Start of Left</button>
+    </div>
+
+    <div class="btn1">
+        <label for="deleteLeft">Line Item Left:</label>
+        <input type="text" id="deleteLeft" />
+        <button onclick="removeLeft()">Remove from Left</button>
+    </div>
+    <div class="btn2">
+        <label for="deleteRight">Line Item Right:</label>
+        <input type="text" id="deleteRight" />
+        <button onclick="removeRight()">Remove from Right</button>
+    </div>
+
+    <div class="btn1"><br /><br /><br /> </div>
+    <div class="btn2"><br /><br /><br /> </div>
 
 
     <footer>
@@ -46,70 +164,63 @@
     </footer>
 
     <script>
-        // Function to check if textboxes are empty
-        function checkEmpty() {
-            // Variable to determine if form can advance
-            var canAdvance = true;
-
-            for (var i = 0; i < 3; i++) {
-
-                if (document.getElementById("fav" + (i + 1)).value == "") {
-                    // Set focus on empty box
-                    document.getElementById("fav" + (i + 1)).focus();
-                    // Stop advancement of program
-                    canAdvance = false;
-                    // Exit loop
-                    break;
-                }
-            }
-
-            // Check to see if we can advance to the next step, if not error message
-            if (canAdvance) {
-                storeMovies();
-            } else {
-                document.getElementById("message").innerHTML = "Please fill out all of the entries.";
-            }
+        function appendLeft() {
+            // Create a new line item element
+            var lineItem = document.createElement("LI");
+            // Set line item HTML equal to user entry
+            lineItem.innerHTML = document.getElementById("addLeft").value;
+            // Add line item to end of left list
+            document.getElementById("list1").appendChild(lineItem);
         }
 
-        // Function to get and store the favorite movies input as an array
-        function storeMovies() {
-            // Create an array
-            var favMovies = [];
-
-            // For loop to assign movies to the array
-            for (var i = 0; i < 3; i++) {
-                favMovies.push(document.getElementById("fav" + (i + 1)).value);
-                console.log(favMovies[i]);
-            }
-
-            // Passes the favMovies array as a parameter to displayMovies
-            displayMovies(favMovies);
+        function appendRight() {
+            // Create a new line item element
+            var lineItem = document.createElement("LI");
+            // Set line item HTML equal to user entry
+            lineItem.innerHTML = document.getElementById("addRight").value;
+            // Add line item to end of right list
+            document.getElementById("list2").appendChild(lineItem);
         }
 
-        // Function to actually display the favorite movies
-        function displayMovies(favMovies) {
-            // Crate iteration variable and display string variable
-            var i = 0;
-            var display = "Your favorite movies are ";
-
-            // While loop
-            while (favMovies[i]) {
-                // Conditional Statement to have first movie not have a comma at the beginning
-                if (i == 0) {
-                    display = display + favMovies[i];
-                } else {
-                    display = display + ", " + favMovies[i];
-                }
-
-                // Iterate
-                i++;
-            }
-            display = display + "!";
-            document.getElementById("message").innerHTML = display;
-
+        function insertFromLeft() {
+            // Get user input and change to node number
+            var itemNumber = (document.getElementById("moveLeft").value) - 1;
+            // Call item from old list
+            var oldItem = document.getElementById("list1").children[itemNumber];
+            // Call first item from new list
+            var newItem = document.getElementById("list2").firstElementChild;
+            // Move item from left list to right list
+            document.getElementById("list2").insertBefore(oldItem, newItem);
         }
 
+        function insertFromRight() {
+            // Get user input and change to node number
+            var itemNumber = (document.getElementById("moveRight").value) - 1;
+            // Call item from old list
+            var oldItem = document.getElementById("list2").children[itemNumber];
+            // Call first item from new list
+            var newItem = document.getElementById("list1").firstElementChild;
+            // Move item from left list to right list
+            document.getElementById("list1").insertBefore(oldItem, newItem);
+        }
 
+        function removeLeft() {
+            // Get user input and change to node number
+            var itemNumber = (document.getElementById("deleteLeft").value) - 1;
+            // Get list
+            var list = document.getElementById("list1")
+            // Remove item from list
+            list.removeChild(list.children[itemNumber]);
+        }
+
+        function removeRight() {
+            // Get user input and change to node number
+            var itemNumber = (document.getElementById("deleteRight").value) - 1;
+            // Get list
+            var list = document.getElementById("list2")
+            // Remove item from list
+            list.removeChild(list.children[itemNumber]);
+        }
     </script>
 </body>
 
