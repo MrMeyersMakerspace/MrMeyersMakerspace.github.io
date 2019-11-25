@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+    <title>DOM Manipulation</title>
+</head>
+
+<body onload="loadAlert()">
+    <style>
+        #touchstartDemo {
+            height: 100px;
+            width: 100px;
+            background-color: yellow;
+        }
+
+        #touchmoveDemo {
+            height: 200px;
+            width: 300px;
+            background-color: white;
+        }
+
+        #touchendDemo {
+            height: 100px;
+            width: 200px;
+            background-color: green;
+        }
+    </style>
+
+    <h1 id="pageName">Standard JavaScript Events</h1>
+    <h2>Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation
+        and Transition Events</h2>
+
+    <h3>JavaScript Events</h3>
+    <p>There are a lot of events that are available for JavaScript. These events are simply things that happen to HTML
+        elements either through something the user does or something the browser does. One of the most commmon events is
+        the <code>onclick</code> event that triggers when an element is clicked. When that item is clicked it calls a
+        function that then does whatever the programmer specifies. There are many other user initiated events.</P>
+    <p>Other events are triggered by the browser like <code>onload</code>. This event is triggered when the object is
+        loaded by the browser. The most common use is to put <code>onload</code> inside of the <code>&lt;body&gt;</code>
+        element to cause a JavaScript function to run once the page is loaded. Wherever it appears it will run
+        JavaScript once that element is finished loading. On this page, for example, there was an <code>alert()</code>
+        that was triggered once the page finished loading due to a <code>onload</code> event in the
+        <code>&lt;body&gt;</code> element of the page.</p>
+
+    <h3>Mobile Friendly Events</h3>
+    <p>There are some events that are more mobile friendly than others. Some of these events are touch events like
+        <code>touchstart</code>, <code>touchmove</code>, <code>touchend</code>, and <code>touchcancel</code>. They work
+        as follows:</p>
+    <ul>
+        <li><code>touchstart</code> - triggers when the element is touched by the user</li>
+        <li><code>touchmove</code> - triggers when the user touches the element and then moves his or her finger across
+            the screen</li>
+        <li><code>touchend</code> - triggers when the user stops touching the element and the screen (not to be confused
+            with touchmove which still works even if the user isn't touching the element as long as he or she is still
+            touching the screen)</li>
+        <li><code>touchcancel</code> - triggers when a touch is interrupted by something else. This seems to be used as
+            an error handling type event when the normal sequence of <code>touchstart</code>, <code>touchmove</code>,
+            and <code>touchend</code> is interrupted for some reason like too many touch points, pressing the home
+            button while touching, and/or pressing the lock button while touching. A great article outlining when this
+            is actually used can be found <a
+                href="https://alxgbsn.co.uk/2011/12/23/different-ways-to-trigger-touchcancel-in-mobile-browsers/">here</a>.
+        </li>
+    </ul>
+
+    <h3>Demo</h3>
+    <p>Below you will find several demos using some touch events. First is a <code>&lt;div&gt;</code> that changes it's
+        width to a random value when it is touched thanks to a <code>touchstart</code> event and JavaScript function.
+        Next is a div that shows your coordinates while you move your finger around it thanks to a
+        <code>touchmove</code> event and JavaScript function. Last is a <code>&lt;div&gt;</code> that will change colors
+        after you remove your finger thanks to a <code>touchend</code> event and JavaScript function.</p>
+    <br>
+    <br>
+    <h4>touchstart</h4>
+    <div id="touchstartDemo" ontouchstart="startDemo()"></div>
+    <br>
+    <br>
+    <h4>touchmove</h4>
+    <div id="touchmoveDemo" ontouchmove="moveDemo()"></div>
+    <br>
+    <br>
+    <h4>touchend</h4>
+    <div id="touchendDemo" ontouchend="endDemo()"></div>
+    <br>
+    <br>
+
+    <footer>
+        <div>
+            <a href="#top">Back to Top</a>
+            <a href="/index.html">Home</a>
+        </div>
+    </footer>
+
+    <script>
+        // Triggered by an onload event and creates an alert when the page is loaded
+        function loadAlert() {
+            alert("This alert was triggered by an onload event");
+        }
+
+        //  Sets first div to random width when touched
+        function startDemo() {
+            var randomWidth = Math.floor(Math.random() * 201 + 100);
+            document.getElementById("touchstartDemo").style.width = randomWidth + "px";
+        }
+
+        // Displays the coordinates of the touch when second div touched and touch moves
+        function moveDemo() {
+            var xCoor = Math.round(event.touches[0].clientX);
+            var yCoor = Math.round(event.touches[0].clientY);
+            document.getElementById("touchmoveDemo").innerHTML = "X: " + xCoor + ", Y: " + yCoor;
+        }
+
+        // Changes the background color of the last div to a random color when user stops touching
+        function endDemo() {
+            var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            document.getElementById("touchendDemo").style.backgroundColor = "#" + randomColor;
+        }
+    </script>
+</body>
+
+</html>
