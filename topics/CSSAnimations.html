@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Animations</title>
+    <title>CSS Transitions, Transforms, and Animations Triggered By JavaScript</title>
     <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
 
     <!--Animation Styles Defined Here for Ease of Viewing-->
@@ -69,7 +69,8 @@
             background-color: green;
             animation-name: demoSimpleColor;
             animation-duration: 4s;
-            animation-delay: 8s;
+            animation-delay: 3s;
+            animation-play-state: paused;
         }
 
         /*Animation demo that is set to repeat 4 times*/
@@ -80,6 +81,7 @@
             animation-name: demoSimpleColor;
             animation-duration: 4s;
             animation-iteration-count: 4;
+            animation-play-state: paused;
         }
 
         /*Animation moves in a square*/
@@ -126,6 +128,7 @@
             animation-duration: 4s;
             animation-iteration-count: infinite;
             animation-direction: normal;
+            animation-play-state: paused;
         }
 
         /*Animation demo that shows a reverse direction*/
@@ -138,6 +141,7 @@
             animation-duration: 4s;
             animation-iteration-count: infinite;
             animation-direction: reverse;
+            animation-play-state: paused;
         }
 
         /*Animation demo that shows an alternating direction*/
@@ -150,6 +154,7 @@
             animation-duration: 4s;
             animation-iteration-count: infinite;
             animation-direction: alternate;
+            animation-play-state: paused;
         }
 
         /*Animation demo that shows a reverse alternating direction*/
@@ -162,6 +167,7 @@
             animation-duration: 4s;
             animation-iteration-count: infinite;
             animation-direction: alternate-reverse;
+            animation-play-state: paused;
         }
 
         /*Saves the space necessary for the squares to move and not run into each other*/
@@ -234,7 +240,11 @@
 </head>
 
 <body>
-    <h1 id="pageName">CSS Animations</h1>
+    <h2>Designing, Defining, and Triggering CSS3 Transiations without Custom Libraries (Thought Library)</h2>
+
+    <h2>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</h2>
+
+    <h1 id="pageName">CSS Transitions, Transforms, and Animations Triggered By JavaScript</h1>
     <h2>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</h2>
     <br />
     <h3><u>CSS Animation Introduction</u></h3>
@@ -244,6 +254,8 @@
         your element is animated between. Each of these keyframes have specific CSS properties defined on that frame and
         the animation moves between them. You can have just two keyframes as a beginning and end or you can have several
         defined by percentages. The key properties used in CSS animations are outlined below.</p>
+    <p style="font-size: 14px; text-align: center;">**NOTE: As you are going through the examples below, simply hit the
+        play/pause button to play/pause the animation example**</p>
     <br />
 
     <h3><code>@keyframes</code></h3>
@@ -308,10 +320,11 @@
     <h3><code>animation-delay</code></h3>
     <p>This CSS property creates a delay before the animations starts. By default, all animations start on pageload. If
         you don't want an animation to start until after a certain period of time then you would add this line of code
-        to delay the start of your animation. An example of an 8 second delay (two full cycles of the above animations)
-        is below:</p>
-    <p><code>animation-delay: 8s;</code></p>
+        to delay the start of your animation. An example of a 3 second delay is below:</p>
+    <p><code>animation-delay: 3s;</code></p>
     <div id="demo3"></div>
+    <button onclick="playPauseAnimationId('demo3')">Play/Pause</button>
+
     <br />
     <br />
 
@@ -326,6 +339,7 @@
     <p>Below is an animation that is set to repeat 4 times only:</p>
     <p><code>animation-iteration-count: 4;</code></p>
     <div id="demo4"></div>
+    <button onclick="playPauseAnimationId('demo4')">Play/Pause</button>
     <br />
     <br />
 
@@ -348,21 +362,25 @@
         <code>animation-direction: normal;</code>
         <div id="demo5"></div>
     </div>
+    <button onclick="playPauseAnimationId('demo5')">Play/Pause</button><br><br>
     <!--DEMO6-->
     <div class="square">
         <code>animation-direction: reverse;</code>
         <div id="demo6"></div>
     </div>
+    <button onclick="playPauseAnimationId('demo6')">Play/Pause</button><br><br>
     <!--DEMO7-->
     <div class="square">
         <code>animation-direction: alternate;</code>
         <div id="demo7"></div>
     </div>
+    <button onclick="playPauseAnimationId('demo7')">Play/Pause</button><br><br>
     <!--DEMO8-->
     <div class="square">
         <code>animation-direction: alternate-reverse;</code>
         <div id="demo8"></div>
     </div>
+    <button onclick="playPauseAnimationId('demo8')">Play/Pause</button><br><br>
     <br />
     <br />
 
@@ -395,7 +413,7 @@
         <div id="ease-in-out" class="demo9"><code>ease-in-out</code></div>
         <div id="cubic-bezier" class="demo9"><code>cubic-bezier(.16,-0.68,.35,1.89)</code></div>
     </div>
-    <button onclick="playPauseAnimation()">Play/Pause</button>
+    <button onclick="playPauseAnimationClass()">Play/Pause</button>
     <br />
     <br />
 
@@ -423,8 +441,26 @@
     </footer>
 
     <script>
-        // Function that shows how to trigger to playing and pausing of CSS animations using JavaScript
-        function playPauseAnimation() {
+        // Function that shows how to trigger the playing and pausing of CSS animations using JavaScript and an ID
+        function playPauseAnimationId(id) {
+            console.log("ID = " + id);
+            var item = document.getElementById(id);
+            console.log("item = " + item);
+            // Checks to see if animation is currently running
+            if (item.style.animationPlayState == "running") {
+                console.log("running");
+                // If it is running then pause the animation
+                item.style.animationPlayState = "paused";
+            } else {
+                console.log("paused");
+                // If it's not then start the animation
+                item.style.animationPlayState = "running";
+
+            }
+        }
+
+        // Function that shows how to trigger the playing and pausing of CSS animations using JavaScript and a class
+        function playPauseAnimationClass() {
             var elements = document.getElementsByClassName("demo9");
             // Checks to see if animation is currently running
             if (elements[0].style.animationPlayState == "running") {
