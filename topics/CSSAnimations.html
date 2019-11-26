@@ -236,15 +236,52 @@
             border: 2px solid black;
             width: 380px;
         }
+
+        #transitionDemo {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transition: background-color 3s;
+        }
+
+        @keyframes rotatingLetters {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            25% {
+                transform: rotateY(90deg);
+            }
+
+            50% {
+                transform: rotateY(180deg);
+            }
+
+            75% {
+                transform: rotateY(270deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        #rotateIt {
+            text-align: center;
+            animation-name: rotatingLetters;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            font-size: 45px;
+            color: white;
+            background-color: purple;
+            animation-play-state: paused;
+        }
     </style>
 </head>
 
 <body>
     <h1 id="pageName">CSS Transitions, Transforms, and Animations Triggered By JavaScript</h1>
-    <h2>Designing, Defining, and Triggering CSS3 Transiations without Custom Libraries (Thought Library)</h2>
-
-    <h2>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</h2>
-
 
     <h2>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</h2>
     <br />
@@ -431,8 +468,46 @@
         <li><code>both</code> - This has the style of the first keyframe exist before the animation starts and the style
             of the last keyframe persist after the animation is completed.</li>
     </ul>
+    <br>
+    <br>
+
+    <h2>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)</h2>
+    <br>
+    <p>CSS transitions allow you to smoothly move from one CSS property to another for an element. It is similar to
+        animations, just simpler and without all of the granular control that animations allow with their keyframes. To
+        specify a transition you will add a <code>transition</code> CSS value specifying what CSS property will change
+        and how long that change will take. You can also add <code>transition-delay</code>,
+        <code>transition-duration</code>, <code>transition-property</code>, and <code>transition-timing-function</code>
+        just like you would with an animation. The final step is to add an additional CSS property and value for that
+        element when the CSS property changes, like on a hover on desktop or when a button is pressed.</p>
+    <p>The example below will cause the <code>&lt;div&gt;</code> box to change it's color the buttons are pressed since
+        hover doesn't work on mobile. Press the buttons to change the CSS property of the div to the background color
+        indicated and the transition will initiate.</p>
+    <div id="transitionDemo"></div>
+    <button onclick="changeColor('blue')">Turn Blue</button>
+    <button onclick="changeColor('orange')">Turn Orange</button>
+    <br>
+    <p>CSS Code:</p>
+    <pre>width: 100px;
+height: 100px;
+background-color: yellow;
+transition: background-color 3s;</pre>
+    <p>JavaScript Code:</p>
+    <pre>function changeColor(color) {
+    document.getElementById("transitionDemo").style.backgroundColor = color;
+}</pre>
     <br />
     <br />
+
+    <h2>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</h2>
+    <p>Transforms allow you to change the translation,rotation, and skew of elements in both 2D and 3D. This can be
+        combined with transitions and/or animations to make interesting effects on the look, size, and scale of
+        elements.</p>
+        <p>Below is an example of putting a transform into an animation to create rotating text.</p>
+        <div id="rotateIt"><h3>THIS IS AMAZING!</h3></div>
+        <button onclick="playPauseAnimationId('rotateIt')">Play/Pause</button>
+    <br>
+    <br>
 
     <footer>
         <div>
@@ -475,6 +550,11 @@
                     elements[i].style.animationPlayState = "running";
                 };
             }
+        }
+
+        // Changes the CSS property of the Transition <div>, thus initiating the transition
+        function changeColor(color) {
+            document.getElementById("transitionDemo").style.backgroundColor = color;
         }
     </script>
 </body>
