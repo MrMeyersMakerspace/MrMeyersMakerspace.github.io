@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!--Link for Dosis Font-->
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet" />
+    <!--Link for social media icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--Link for nav icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Resistor Calculator</title>
+</head>
+
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <header>
+                <h1 id="pageName">Resistor Calculator</h1>
+            </header>
+            <select id="numBands" onchange="numColors(this)">
+                <option value=4>4 Bands</option>
+                <option value=5>5 Bands</option>
+                <option value=6>6 Bands</option>
+            </select>
+            <div id="bandDIVs" class="flexContainer">
+                <div id="band1" class="band"></div>
+                <div id="band2" class="band"></div>
+                <div id="band3" class="band"></div>
+                <div id="band4" class="band"></div>
+            </div>
+
+
+
+
+        </div>
+        <footer>
+            <div class="footer-center">
+                ©2019 Copyright Maker Meyers
+            </div>
+            <div class="footer-center">
+                <a href="https://www.instagram.com/mrmeyersmakerspace/" class="ifoot fa fa-instagram"></a>
+                <a href="https://github.com/MrMeyersMakerspace" class="ifoot fa fa-github"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        var bandDIV = document.getElementById("bandDIVs");
+
+        function numColors(bands) {
+            console.log(`The number of bands is:  ${bands.value}`);
+            // Change number of divs to # bands depending on selection
+            switch (Number(bands.value)) {
+                case 4:
+                    console.log("Switch value 4 called");
+                    console.log(`Child Element Count = ${bandDIV.childElementCount}`);
+                    // Check how many DIVs are present and change it to 5
+                    // When there are 4 DIVs present add one
+                    if (bandDIV.childElementCount == 5) {
+                        bandDIV.removeChild(bandDIV.lastChild);
+                    }
+                    // When there are 6 DIVs present remove the last one
+                    if (bandDIV.childElementCount == 6) {
+                        bandDIV.removeChild(bandDIV.lastChild);
+                        bandDIV.removeChild(bandDIV.lastChild);
+                    }
+                    break;
+
+                case 5:
+                    console.log("Switch value 5 called");
+                    console.log(`Child Element Count = ${bandDIV.childElementCount}`);
+                    // Check how many DIVs are present and change it to 5
+                    // When there are 4 DIVs present add one
+                    if (bandDIV.childElementCount == 4) {
+                        var newDIV = document.createElement("DIV");
+                        newDIV.id = "band5";
+                        newDIV.className = "band";
+                        newDIV.style.backgroundColor = "red";
+                        bandDIV.appendChild(newDIV);
+                    }
+                    // When there are 6 DIVs present remove the last one
+                    if (bandDIV.childElementCount == 6) {
+                        bandDIV.removeChild(bandDIV.lastChild);
+                    }
+                    break;
+
+                case 6:
+                    console.log("Switch value 6 called");
+                    console.log(`Child Element Count = ${bandDIV.childElementCount}`);
+                    // Check how many DIVs are present and change it to 6
+                    // When there are 4 DIVs present add two
+                    if (bandDIV.childElementCount == 4) {
+                        // Add first div
+                        var newDIV = document.createElement("DIV");
+                        newDIV.id = "band5";
+                        newDIV.className = "band";
+                        newDIV.style.backgroundColor = "red";
+                        bandDIV.appendChild(newDIV);
+
+
+                        // Add second div
+                        var newDIV2 = document.createElement("DIV");
+                        newDIV2.id = "band6";
+                        newDIV2.className = "band";
+                        newDIV2.style.backgroundColor = "red";
+                        bandDIV.appendChild(newDIV);
+                    }
+                    // When there are 5 DIVs present add one
+                    if (bandDIV.childElementCount == 5) {
+                        // Add div
+                        var newDIV = document.createElement("DIV");
+                        newDIV.id = "band6";
+                        newDIV.className = "band";
+                        newDIV.style.backgroundColor = "red";
+                        bandDIV.appendChild(newDIV);
+                    }
+                    break;
+                default:
+                    console.log("Switch choices failed");
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
