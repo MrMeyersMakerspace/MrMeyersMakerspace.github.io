@@ -32,7 +32,72 @@
                 <div id="band3" class="band"></div>
                 <div id="band4" class="band"></div>
             </div>
-
+            <div id="colorSelector" class="flexContainer">
+                <select id="bandColor1" class="selectorBox" onchange="changeColors(1)">
+                    <option value=0 style="background-color: black; color: white;">Black</option>
+                    <option value=1 style="background-color: brown; color: white;">Brown</option>
+                    <option value=2 style="background-color: red; color: black;">Red</option>
+                    <option value=3 style="background-color: orange; color: black;">Orange</option>
+                    <option value=4 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=5 style="background-color: green; color: black;">Green</option>
+                    <option value=6 style="background-color: blue; color: white;">Blue</option>
+                    <option value=7 style="background-color: violet; color: black;">Violet</option>
+                    <option value=8 style="background-color: grey; color: white;">Grey</option>
+                    <option value=9 style="background-color: white; color: black;">White</option>
+                </select>
+                <select id="bandColor2" class="selectorBox" onchange="changeColors(2)">
+                    <option value=0 style="background-color: black; color: white;">Black</option>
+                    <option value=1 style="background-color: brown; color: white;">Brown</option>
+                    <option value=2 style="background-color: red; color: black;">Red</option>
+                    <option value=3 style="background-color: orange; color: black;">Orange</option>
+                    <option value=4 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=5 style="background-color: green; color: black;">Green</option>
+                    <option value=6 style="background-color: blue; color: white;">Blue</option>
+                    <option value=7 style="background-color: violet; color: black;">Violet</option>
+                    <option value=8 style="background-color: grey; color: white;">Grey</option>
+                    <option value=9 style="background-color: white; color: black;">White</option>
+                </select>
+                <select id="bandColor3" class="selectorBox" onchange="changeColors(3)">
+                    <option value=0 style="background-color: black; color: white;">Black</option>
+                    <option value=1 style="background-color: brown; color: white;">Brown</option>
+                    <option value=2 style="background-color: red; color: black;">Red</option>
+                    <option value=3 style="background-color: orange; color: black;">Orange</option>
+                    <option value=4 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=5 style="background-color: green; color: black;">Green</option>
+                    <option value=6 style="background-color: blue; color: white;">Blue</option>
+                    <option value=7 style="background-color: violet; color: black;">Violet</option>
+                    <option value=8 style="background-color: grey; color: white;">Grey</option>
+                    <option value=9 style="background-color: white; color: black;">White</option>
+                </select>
+                <select id="bandColor4" class="selectorBox" onchange="changeColors(4)">
+                    <option value=0.01 style="background-color: silver; color: black;">Silver</option>
+                    <option value=0.1 style="background-color: gold; color: black;">Gold</option>
+                    <option value=1 style="background-color: black; color: white;">Black</option>
+                    <option value=10 style="background-color: brown; color: white;">Brown</option>
+                    <option value=100 style="background-color: red; color: black;">Red</option>
+                    <option value=1000 style="background-color: orange; color: black;">Orange</option>
+                    <option value=10000 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=100000 style="background-color: green; color: black;">Green</option>
+                    <option value=1000000 style="background-color: blue; color: white;">Blue</option>
+                    <option value=10000000 style="background-color: violet; color: black;">Violet</option>
+                </select>
+                <select id="bandColor5" class="selectorBox" onchange="changeColors(5)">
+                    <option value=0.1 style="background-color: silver; color: black;">Silver</option>
+                    <option value=0.05 style="background-color: gold; color: black;">Gold</option>
+                    <option value=0.01 style="background-color: brown; color: white;">Brown</option>
+                    <option value=0.02 style="background-color: red; color: black;">Red</option>
+                    <option value=0.005 style="background-color: green; color: black;">Green</option>
+                    <option value=0.0025 style="background-color: blue; color: white;">Blue</option>
+                    <option value=0.001 style="background-color: violet; color: black;">Violet</option>
+                    <option value=0.0005 style="background-color: grey; color: white;">Grey</option>
+                </select>
+                <select id="bandColor6" class="selectorBox" onchange="changeColors(6)">
+                    <option value=10 style="background-color: brown; color: white;">Brown</option>
+                    <option value=100 style="background-color: red; color: black;">Red</option>
+                    <option value=1000 style="background-color: orange; color: black;">Orange</option>
+                    <option value=10000 style="background-color: yellow; color: black;">Yellow</option>
+                </select>
+            </div>
 
 
 
@@ -50,11 +115,18 @@
 
     <script>
         var bandDIV = document.getElementById("bandDIVs");
+        // Store the number of bands of the given resistor
+        var numBands;
+
+        function changeColors(band) {
+            
+        }
 
         function numColors(bands) {
-            console.log(`The number of bands is:  ${bands.value}`);
+            numBands = bands.value;
+            console.log(`The number of bands is:  ${numBands}`);
             // Change number of divs to # bands depending on selection
-            switch (Number(bands.value)) {
+            switch (Number(numBands)) {
                 case 4:
                     console.log("Switch value 4 called");
                     console.log(`Child Element Count = ${bandDIV.childElementCount}`);
@@ -68,6 +140,11 @@
                         bandDIV.removeChild(bandDIV.lastChild);
                         bandDIV.removeChild(bandDIV.lastChild);
                     }
+
+                    // Show bands 1, 2, 4, and 5 only
+                    document.getElementById("bandColor3").style.display = "none";
+                    document.getElementById("bandColor5").style.display = "block";
+                    document.getElementById("bandColor6").style.display = "none";
                     break;
 
                 case 5:
@@ -79,13 +156,18 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band5";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "red";
+                        newDIV.style.backgroundColor = "gold";
                         bandDIV.appendChild(newDIV);
                     }
                     // When there are 6 DIVs present remove the last one
                     if (bandDIV.childElementCount == 6) {
                         bandDIV.removeChild(bandDIV.lastChild);
                     }
+
+                    // Show bands 1, 2, 3, 4, and 5 only
+                    document.getElementById("bandColor3").style.display = "block";
+                    document.getElementById("bandColor5").style.display = "block";
+                    document.getElementById("bandColor6").style.display = "none";
                     break;
 
                 case 6:
@@ -98,7 +180,7 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band5";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "red";
+                        newDIV.style.backgroundColor = "gold";
                         bandDIV.appendChild(newDIV);
 
 
@@ -106,7 +188,7 @@
                         var newDIV2 = document.createElement("DIV");
                         newDIV2.id = "band6";
                         newDIV2.className = "band";
-                        newDIV2.style.backgroundColor = "red";
+                        newDIV2.style.backgroundColor = "orange";
                         bandDIV.appendChild(newDIV);
                     }
                     // When there are 5 DIVs present add one
@@ -115,9 +197,14 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band6";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "red";
+                        newDIV.style.backgroundColor = "orange";
                         bandDIV.appendChild(newDIV);
                     }
+
+                    // Show all 6 bands
+                    document.getElementById("bandColor4").style.display = "block";
+                    document.getElementById("bandColor5").style.display = "block";
+                    document.getElementById("bandColor6").style.display = "block";
                     break;
                 default:
                     console.log("Switch choices failed");
