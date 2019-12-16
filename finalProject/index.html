@@ -21,18 +21,24 @@
             <header>
                 <h1 id="pageName">Resistor Calculator</h1>
             </header>
+
+            <!--Number of Bands Selector-->
             <select id="numBands" onchange="numColors(this)">
                 <option value=4>4 Bands</option>
                 <option value=5>5 Bands</option>
                 <option value=6>6 Bands</option>
             </select>
-            <div id="bandDIVs" class="flexContainer">
+
+            <!--Display for the Bands-->
+            <div id="bandDIVs" class="flexContainer1">
                 <div id="band1" class="band"></div>
                 <div id="band2" class="band"></div>
                 <div id="band3" class="band"></div>
                 <div id="band4" class="band"></div>
             </div>
-            <div id="colorSelector" class="flexContainer">
+
+            <!--Selectors for the colors for each band-->
+            <div id="colorSelector" class="flexContainer2">
                 <select id="bandColor1" class="selectorBox" onchange="changeColors(1)">
                     <option value=0 style="background-color: black; color: white;">Black</option>
                     <option value=1 style="background-color: brown; color: white;">Brown</option>
@@ -116,12 +122,25 @@
     <script>
         var bandDIV = document.getElementById("bandDIVs");
         // Store the number of bands of the given resistor
-        var numBands;
+        var numBands = 4;
 
+        // Changes the colors of the bands when a color is selected
         function changeColors(band) {
-            
+            var element = document.getElementById(`bandColor${band}`);
+
+            // Have to adjust the process for only 4 bands so this check fixes the process
+            if (numBands == 4) {
+                if (band < 3) {
+                    bandDIV.children[band - 1].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+                } else {
+                    bandDIV.children[band - 2].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+                }
+            } else {
+                bandDIV.children[band - 1].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+            }
         }
 
+        // Change the number of bands when a new number is selected and make sure they are the right color
         function numColors(bands) {
             numBands = bands.value;
             console.log(`The number of bands is:  ${numBands}`);
@@ -141,6 +160,20 @@
                         bandDIV.removeChild(bandDIV.lastChild);
                     }
 
+                    // Mirror the band color with the selected color
+                    for (var i = 0; i < 5; i++) {
+                        var element = document.getElementById(`bandColor${i + 1}`);
+                        console.log(element.options.item(element.options.selectedIndex).text)
+
+                        // Check to fix the color for when there are only 4 selected
+                        if (i < 2) {
+                            bandDIV.children[i].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+                        }
+                        if (i > 2) {
+                            bandDIV.children[i - 1].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+                        }
+                    }
+
                     // Show bands 1, 2, 4, and 5 only
                     document.getElementById("bandColor3").style.display = "none";
                     document.getElementById("bandColor5").style.display = "block";
@@ -156,12 +189,19 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band5";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "gold";
+                        newDIV.style.backgroundColor = "silver";
                         bandDIV.appendChild(newDIV);
                     }
                     // When there are 6 DIVs present remove the last one
                     if (bandDIV.childElementCount == 6) {
                         bandDIV.removeChild(bandDIV.lastChild);
+                    }
+
+                    // Mirror the band color with the selected color
+                    for (var i = 0; i < 5; i++) {
+                        var element = document.getElementById(`bandColor${i + 1}`);
+                        console.log(element.options.item(element.options.selectedIndex).text)
+                        bandDIV.children[i].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
                     }
 
                     // Show bands 1, 2, 3, 4, and 5 only
@@ -180,7 +220,7 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band5";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "gold";
+                        newDIV.style.backgroundColor = "silver";
                         bandDIV.appendChild(newDIV);
 
 
@@ -188,7 +228,7 @@
                         var newDIV2 = document.createElement("DIV");
                         newDIV2.id = "band6";
                         newDIV2.className = "band";
-                        newDIV2.style.backgroundColor = "orange";
+                        newDIV2.style.backgroundColor = "brown";
                         bandDIV.appendChild(newDIV);
                     }
                     // When there are 5 DIVs present add one
@@ -197,12 +237,19 @@
                         var newDIV = document.createElement("DIV");
                         newDIV.id = "band6";
                         newDIV.className = "band";
-                        newDIV.style.backgroundColor = "orange";
+                        newDIV.style.backgroundColor = "brown";
                         bandDIV.appendChild(newDIV);
                     }
 
+                    // Mirror the band color with the selected color
+                    for (var i = 0; i < 5; i++) {
+                        var element = document.getElementById(`bandColor${i + 1}`);
+                        console.log(element.options.item(element.options.selectedIndex).text)
+                        bandDIV.children[i].style.backgroundColor = element.options.item(element.options.selectedIndex).text;
+                    }
+
                     // Show all 6 bands
-                    document.getElementById("bandColor4").style.display = "block";
+                    document.getElementById("bandColor3").style.display = "block";
                     document.getElementById("bandColor5").style.display = "block";
                     document.getElementById("bandColor6").style.display = "block";
                     break;

@@ -103,18 +103,31 @@ li {
     padding-right: 30%;
 }
 
-.flexContainer {
+.flexContainer1 {
     display: flex;
     width: 100%;
     margin: 0px;
     text-align: center;
     background-color: papayawhip;
+    animation-name: intro1;
+    animation-duration: 2s;
+}
+
+.flexContainer2 {
+    display: flex;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    background-color: papayawhip;
+    animation-name: intro2;
+    animation-duration: 2s;
 }
 
 .band {
     height: 100px;
     width: 25%;
     margin: 5px;
+    transition: background-color 1s;
 }
 
 .selectorBox {
@@ -131,11 +144,11 @@ li {
 }
 
 #band3 {
-    background-color: black;
+    background-color: silver;
 }
 
 #band4 {
-    background-color: black;
+    background-color: silver;
 }
 
 #bandColor3 {
@@ -144,6 +157,30 @@ li {
 
 #bandColor6 {
     display: none;
+}
+
+@keyframes intro1 {
+    from {
+        width: 0px;
+        height: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        height: 110px;
+        width: 100%;
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes intro2 {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 @media screen and (max-width: 680px) {
