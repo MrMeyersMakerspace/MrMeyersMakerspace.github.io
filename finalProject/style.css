@@ -206,6 +206,10 @@ td {
     display: none;
 }
 
+#clearValues {
+    width: 25%;
+}
+
 @keyframes intro1 {
     from {
         width: 0px;

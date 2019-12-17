@@ -113,6 +113,8 @@
             <button type="button" onclick="saveValue()">Save Resistor Value</button>
             <br><br>
             <table id="valuesTable"></table>
+            <br><br>
+            <button type="button" id="clearValues" onclick="clearValues()">Clear Saved Resistor Values</button>
         </div>
         <footer>
             <div class="footer-center">
@@ -439,8 +441,7 @@
                         <div class="bands" style="background-color: ${resistors[i].color3};"></div>
                         <div class="bands" style="background-color: ${resistors[i].color4};"></div>
                         </td>
-                        <td class="rowValue">${resistors[i].value}</td>
-                        </tr>`;
+                        <td class="rowValue">${resistors[i].value}</td>`;
                         break;
                     case 5:
                         myTable.innerHTML += `<td class="flexContainer3">
@@ -450,8 +451,7 @@
                         <div class="bands" style="background-color: ${resistors[i].color4};"></div>
                         <div class="bands" style="background-color: ${resistors[i].color5};"></div>
                         </td>
-                        <td class="rowValue">${resistors[i].value}</td>
-                        </tr>`;
+                        <td class="rowValue">${resistors[i].value}</td>`;
                         break;
                     case 6:
                     myTable.innerHTML += `<td class="flexContainer3">
@@ -462,13 +462,20 @@
                         <div class="bands" style="background-color: ${resistors[i].color5};"></div>
                         <div class="bands" style="background-color: ${resistors[i].color6};"></div>
                         </td>
-                        <td class="rowValue">${resistors[i].value}</td>
-                        </tr>`;
+                        <td class="rowValue">${resistors[i].value}</td>`;
                         break;
                 }
+                myTable.innerHTML += `</tr>`;
                 console.log(resistors.length);
                 console.log(resistors[i].numBands);
             }
+        }
+
+        // Clears saved values out of localStorage
+        function clearValues() {
+            window.localStorage.clear();
+            resistors = [{}];
+            renderValues();
         }
     </script>
 </body>
