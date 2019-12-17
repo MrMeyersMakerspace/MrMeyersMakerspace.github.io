@@ -83,6 +83,7 @@ h2 {
 p {
     font-size: 24px;
     text-align: center;
+    margin: 4px;
 }
 
 ul {
@@ -113,6 +114,25 @@ button {
     padding-right: 30%;
 }
 
+#valuesTable {
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: papayawhip;
+}
+
+td {
+    font-weight: normal;
+}
+
 .flexContainer1 {
     display: flex;
     width: 100%;
@@ -131,6 +151,23 @@ button {
     background-color: papayawhip;
     animation-name: intro2;
     animation-duration: 2s;
+}
+
+.rowValue {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 4.5vw;
+    width: 50%;
+}
+
+.flexContainer3 {
+    display: flex;
+}
+
+.bands {
+    height: 50px;
+    width: 25%;
+    margin: 2px;
 }
 
 .band {
