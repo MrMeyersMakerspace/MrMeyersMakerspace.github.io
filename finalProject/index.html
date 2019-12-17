@@ -15,7 +15,7 @@
     <title>Resistor Calculator</title>
 </head>
 
-<body onload="updateValue()">
+<body onload="getValues()">
     <div id="page-container">
         <div id="content-wrap">
             <header>
@@ -110,6 +110,8 @@
             <p style="text-decoration: underline; font-weight: bold;">Current Resistor Value</p>
             <p id="resistorValue"></p>
 
+            <button type="button" onclick="saveValue()">Save Resistor Value</button>
+
             <div id="valuesTable"></div>
         </div>
         <footer>
@@ -127,8 +129,21 @@
         var bandDIV = document.getElementById("bandDIVs");
         // Store the number of bands of the given resistor
         var numBands = 4;
+        // Store current resistor value
+        var resistorValue;
+        // Create resistor array
+        var resistors = [
+            {
+                numBands: 4,
+                color1: "Brown",
+                color2: "Black",
+                color3: "Brown",
+                color4: "Brown",
+                value: "100 Ω ± 1%"
+            }
+        ];
 
-        // Changes the colors of the bands when a color is selected
+        // Changes the colors of the bands when a color is selected and updates resistor value
         function changeColors(band) {
             // Updates the resistor value
             updateValue();
@@ -148,7 +163,6 @@
         }
 
         // Change the number of bands when a new number is selected and make sure they are the right color
-        // Also calls updateValue() to update the resistor value
         function numColors(bands) {
             numBands = bands.value;
             console.log(`The number of bands is:  ${numBands}`);
@@ -272,7 +286,6 @@
 
         // Updates the resistor value based on current colors selected
         function updateValue() {
-            var resistorValue
             var band1 = document.getElementById("bandColor1");
             var band2 = document.getElementById("bandColor2");
             var band3 = document.getElementById("bandColor3");
@@ -312,6 +325,97 @@
                     break;
                     break;
             }
+        }
+
+        // Save's current resistor value to localStorage
+        function saveValue() {
+            var band1 = document.getElementById("bandColor1");
+            var band2 = document.getElementById("bandColor2");
+            var band3 = document.getElementById("bandColor3");
+            var band4 = document.getElementById("bandColor4");
+            var band5 = document.getElementById("bandColor5");
+            var band6 = document.getElementById("bandColor6");
+
+            switch (Number(numBands)) {
+                case 4:
+                    // Create a new resistor object
+                    var newResistor = {
+                        numBands: 4,
+                        color1: band1.options.item(band1.options.selectedIndex).text,
+                        color2: band2.options.item(band2.options.selectedIndex).text,
+                        color3: band4.options.item(band4.options.selectedIndex).text,
+                        color4: band5.options.item(band5.options.selectedIndex).text,
+                        value: resistorValue
+                    };
+
+                    // Add new resistor to array of resistor objects
+                    resistors.push(newResistor);
+
+                    // Store resistors in local storage
+                    localStorage.setItem("resistors", JSON.stringify(resistors));
+                    console.log(JSON.stringify(resistors));
+                    console.log(resistors);
+                    break;
+
+                case 5:
+                    // Create a new resistor object
+                    var newResistor = {
+                        numBands: 5,
+                        color1: band1.options.item(band1.options.selectedIndex).text,
+                        color2: band2.options.item(band2.options.selectedIndex).text,
+                        color3: band3.options.item(band3.options.selectedIndex).text,
+                        color4: band4.options.item(band4.options.selectedIndex).text,
+                        color5: band5.options.item(band5.options.selectedIndex).text,
+                        value: resistorValue
+                    };
+                    // Add new resistor to array of resistor objects
+                    resistors.push(newResistor);
+
+                    // Store resistors in local storage
+                    localStorage.setItem("resistors", JSON.stringify(resistors));
+                    console.log(JSON.stringify(resistors));
+                    console.log(resistors);
+                    break;
+
+                case 6:
+                    // Create a new resistor object
+                    var newResistor = {
+                        numBands: 6,
+                        color1: band1.options.item(band1.options.selectedIndex).text,
+                        color2: band2.options.item(band2.options.selectedIndex).text,
+                        color3: band3.options.item(band3.options.selectedIndex).text,
+                        color4: band4.options.item(band4.options.selectedIndex).text,
+                        color5: band5.options.item(band5.options.selectedIndex).text,
+                        color6: band6.options.item(band6.options.selectedIndex).text,
+                        value: resistorValue
+                    };
+                    // Add new resistor to array of resistor objects
+                    resistors.push(newResistor);
+
+                    // Store resistors in local storage
+                    localStorage.setItem("resistors", JSON.stringify(resistors));
+                    console.log(JSON.stringify(resistors));
+                    console.log(resistors);
+                    break;
+            }
+        }
+
+        // Gets all the resistors in localStorage and displays them
+        function getValues() {
+            // Get resistor values from localStorage
+            var oldResistors = localStorage.getItem("resistors");
+            console.log(oldResistors);
+            // Parse resistor values into an object
+            oldResistors = JSON.parse(oldResistors);
+            console.log(oldResistors);
+
+            if (oldResistors !== null) {
+                // Push localStorage resistor values to local resistor object
+                for (var i = 1; i < oldResistors.length; i++) {
+                    resistors.push(oldResistors[i]);
+                }
+            }
+            console.log(resistors);
         }
     </script>
 </body>
