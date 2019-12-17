@@ -88,24 +88,27 @@
                     <option value=10000000 style="background-color: violet; color: black;">Violet</option>
                 </select>
                 <select id="bandColor5" class="selectorBox" onchange="changeColors(5)">
-                    <option value=0.1 style="background-color: silver; color: black;">Silver</option>
-                    <option value=0.05 style="background-color: gold; color: black;">Gold</option>
-                    <option value=0.01 style="background-color: brown; color: white;">Brown</option>
-                    <option value=0.02 style="background-color: red; color: black;">Red</option>
-                    <option value=0.005 style="background-color: green; color: black;">Green</option>
-                    <option value=0.0025 style="background-color: blue; color: white;">Blue</option>
-                    <option value=0.001 style="background-color: violet; color: black;">Violet</option>
-                    <option value=0.0005 style="background-color: grey; color: white;">Grey</option>
+                    <option value=10 style="background-color: silver; color: black;">Silver</option>
+                    <option value=5 style="background-color: gold; color: black;">Gold</option>
+                    <option value=1 style="background-color: brown; color: white;">Brown</option>
+                    <option value=2 style="background-color: red; color: black;">Red</option>
+                    <option value=0.5 style="background-color: green; color: black;">Green</option>
+                    <option value=0.25 style="background-color: blue; color: white;">Blue</option>
+                    <option value=0.1 style="background-color: violet; color: black;">Violet</option>
+                    <option value=0.05 style="background-color: grey; color: white;">Grey</option>
                 </select>
                 <select id="bandColor6" class="selectorBox" onchange="changeColors(6)">
-                    <option value=10 style="background-color: brown; color: white;">Brown</option>
-                    <option value=100 style="background-color: red; color: black;">Red</option>
-                    <option value=1000 style="background-color: orange; color: black;">Orange</option>
-                    <option value=10000 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=100 style="background-color: brown; color: white;">Brown</option>
+                    <option value=50 style="background-color: red; color: black;">Red</option>
+                    <option value=15 style="background-color: orange; color: black;">Orange</option>
+                    <option value=25 style="background-color: yellow; color: black;">Yellow</option>
+                    <option value=10 style="background-color: blue; color: white;">Blue</option>
+                    <option value=5 style="background-color: violet; color: black;">Violet</option>
                 </select>
             </div>
 
-
+            <p style="text-decoration: underline; font-weight: bold;">Current Resistor Value</p>
+            <p id="resistorValue"></p>
 
         </div>
         <footer>
@@ -126,6 +129,9 @@
 
         // Changes the colors of the bands when a color is selected
         function changeColors(band) {
+            // Updates the resistor value
+            updateValue();
+
             var element = document.getElementById(`bandColor${band}`);
 
             // Have to adjust the process for only 4 bands so this check fixes the process
@@ -141,6 +147,7 @@
         }
 
         // Change the number of bands when a new number is selected and make sure they are the right color
+        // Also calls updateValue() to update the resistor value
         function numColors(bands) {
             numBands = bands.value;
             console.log(`The number of bands is:  ${numBands}`);
@@ -255,6 +262,52 @@
                     break;
                 default:
                     console.log("Switch choices failed");
+                    break;
+            }
+
+
+        }
+
+        // Updates the resistor value based on current colors selected
+        function updateValue() {
+            var resistorValue
+            var band1 = document.getElementById("bandColor1");
+            var band2 = document.getElementById("bandColor2");
+            var band3 = document.getElementById("bandColor3");
+            var band4 = document.getElementById("bandColor4");
+            var band5 = document.getElementById("bandColor5");
+            var band6 = document.getElementById("bandColor6");
+
+            // Algorithm changes depending on the number of bands
+            switch (Number(numBands)) {
+                case 4:
+                    // Add first two band numbers together as strings
+                    resistorValue = String(band1.value) + String(band2.value);
+                    // Multiply by the multiplier
+                    resistorValue = Number(resistorValue) * Number(band4.value);
+                    // Add the tolerance
+                    resistorValue = String(resistorValue) + " Ω ± " + String(band5.value) + "%";
+                    document.getElementById("resistorValue").innerHTML = resistorValue;
+                    break;
+
+                case 5:
+                    // Add first three band numbers together as strings
+                    resistorValue = String(band1.value) + String(band2.value) + String(band3.value);
+                    // Multiply by the multiplier
+                    resistorValue = Number(resistorValue) * Number(band4.value);
+                    // Add the tolerance
+                    resistorValue = String(resistorValue) + " Ω ± " + String(band5.value) + "%";
+                    document.getElementById("resistorValue").innerHTML = resistorValue;
+                    break;
+                case 6:
+                    // Add first three band numbers together as strings
+                    resistorValue = String(band1.value) + String(band2.value) + String(band3.value);
+                    // Multiply by the multiplier
+                    resistorValue = Number(resistorValue) * Number(band4.value);
+                    // Add the tolerance
+                    resistorValue = String(resistorValue) + " Ω ± " + String(band5.value) + "% " + String(band6.value) + " ppm";
+                    document.getElementById("resistorValue").innerHTML = resistorValue;
+                    break;
                     break;
             }
         }
